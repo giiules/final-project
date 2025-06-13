@@ -756,7 +756,7 @@
               aria-label="Volume control"
               style="width: 100px; height: 3px; background: transparent; accent-color: #F7D149; outline: none; border-radius: 2px;">
           </label>
-            <audio id="main-audio">
+            <audio id="main-audio" preload="none" aria-label="Recording of the article reading">
               <source src="audio/listen-erased.mp3" type="audio/mp3"/>
             </audio>
           </div>
@@ -832,7 +832,7 @@
       <div class="image-text-image">
         <img src="graphs/overall.png" alt="Infographic: One in 14 people in England feel lonely often or always"/>
         <div style="text-align: center; margin-top: 1rem;">
-          <a href="graphs/overall.png" target="_blank" class="infographic-button">
+          <a href="graphs/overall-big.png" target="_blank" class="infographic-button">
             View the infographic
           </a>
         </div>
@@ -935,7 +935,19 @@
         ALWAYS A STRANGER | A POEM BY JOHN, TALKIN' TABLES MEMBER
       </div>
 
-    <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093107947?h=6fefecd33e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="always-a-stranger-transcoded"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+      <video id="poem-video"
+        controls
+        width="100%"
+        preload="none"
+        aria-label="Watch video poem Always a Stranger by Talkin’ Tables member John"
+        poster="photos/always-a-stranger-thumbnail.png"
+        style="max-width: 700px; display: block; margin-left: 0;"
+        aria-label="Watch video poem Always a Stranger by Talkin’ Tables member John">
+        
+        <source src="video/always-a-stranger-transcoded.webm" type="video/webm"/>
+        <source src="video/always-a-stranger-transcoded.mp4" type="video/mp4"/>
+        Your browser does not support the video tag.
+      </video>
     </div>
 
     <details style="margin-top: 1rem; max-width: 700px; color: #ccc; font-size: 0.85rem;">
