@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 // Receive user dot + message
 app.post('/api/submit', (req, res) => {
   const { x, y, message, ggid } = req.body;
-  const sql = "INSERT INTO loneliness_entries (x, y, message, ggid) VALUES (?, ?, ?, ?)";
+  const sql = "INSERT INTO connections (x, y, message, ggid) VALUES (?, ?, ?, ?)";
   pool.query(sql, [x, y, message, ggid], (err, result) => {
     if (err) {
       console.error("❌ Insert failed:", err);
@@ -52,7 +52,7 @@ app.post('/api/submit', (req, res) => {
 
 // (Optional) Endpoint to get all submissions
 app.get('/api/submissions', (req, res) => {
-  pool.query("SELECT * FROM loneliness_entries ORDER BY submitted_at DESC", (err, results) => {
+  pool.query("SELECT * FROM connections ORDER BY id DESC", (err, results) => {
     if (err) {
       console.error("❌ Fetch failed:", err);
       return res.status(500).json({ error: "Failed to fetch" });
