@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="A multimedia feature exploring how design can help redraw human connection. Includes data, interviews, illustration, soundbites and video.">
+  <meta name="author" content="Giulia Serrelli">
+  <meta name="keywords" content="loneliness, social isolation, mental health, connection, design, urban planning, community, social prescribing, soundbites, storytelling">
+  <title>Erased: can design help redraw human connection?</title>
+  <meta property="og:title" content="Erased: can design help redraw human connection?">
+  <meta property="og:description" content="A multimedia featureabout loneliness exploring how thoughtful design can help rebuild human connection.">
+  <meta property="og:image" content="https://doc.gold.ac.uk/~gserr001/feature/illustrations/redrawn-square.png">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://doc.gold.ac.uk/~gserr001/feature/loneliness.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Erased: can design help redraw human connection?">
+  <meta name="twitter:description" content="A multimedia featureabout loneliness exploring how thoughtful design can help rebuild human connection.">
+  <meta name="twitter:image" content="https://doc.gold.ac.uk/~gserr001/feature/illustrations/redrawn-square.png">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.12/dist/css/uikit.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'open sans', serif;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+
+    .hero-text,
+    .hero-image {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem;
+    }
+
+    .hero-image {
+      padding: 0;
+    }
+
+    .hero-image img {
+      width: 80%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .disclaimer {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 2rem;
+      margin-right: 8rem;
+      font-style: italic;
+    }
+
+    .mental-health-popup {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: #111;
+      color: #fff;
+      padding: 1rem 1.25rem;
+      max-width: 320px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: 'Open Sans', sans-serif;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+
+    .popup-text {
+      line-height: 1.5;
+    }
+
+    .popup-text a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .popup-close {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      font-size: 1.2rem;
+      cursor: pointer;
+      position: absolute;
+      top: 0.4rem;
+      right: 0.6rem;
+    }
+
+    .main-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .main-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .subheading {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 1rem auto 0.75rem auto;
+      text-align: left;
+      background-color: #fff;
+      color: #000;
+      padding: 0.4rem 0.8rem;
+      display: inline-block;
+      line-height: 1.4;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .full-width-image {
+      position: relative;
+      width: 100vw;
+      left: 50%;
+      margin-left: -50vw;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+
+    .full-width-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .animated-graph {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 4rem auto;
+      margin-bottom: 1rem;
+    }
+
+    .graph-bg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .graph-line-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .graph-line {
+      width: 100%;
+      height: 100%;
+    }
+
+    .replay-container {
+      text-align: left;
+      margin-top: 0.2rem;
+      margin-left: 0.25rem;
+    }
+
+    .replay-button {
+      font-size: 0.75rem;
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+    }
+
+    .replay-button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .image-switcher {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 16 / 9;
+      margin: 4rem auto 2rem auto;
+      overflow: hidden;
+    }
+
+    .image-switcher img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      z-index: 0;
+    }
+
+    .image-switcher img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .image-switcher button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0 1rem;
+      z-index: 2;
+    }
+
+    .image-switcher .prev {
+      left: 0;
+    }
+
+    .image-switcher .next {
+      right: 0;
+    }
+
+    .caption {
+      text-align: center;
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .progress-container {
+      max-width: 1000px;
+      height: 4px;
+      background: #333;
+      margin: 0 auto 2rem auto;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #fff;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .infographic-button {
+      font-size: 0.75rem;
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+    }
+
+    .infographic-button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+    
+    .pudding-soundbite {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      width: fit-content;
+      margin: 2rem auto;
+      transition: transform 0.2s ease;
+    }
+
+    .pudding-soundbite:hover {
+      transform: scale(1.03);
+    }
+
+    .pudding-head {
+      width: 160px;
+      height: auto;
+    }
+
+    .pudding-name {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: white;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .speaker-icon-inline {
+      width: 1.5rem;
+      height: auto;
+    }
+
+    .play-button {
+      font-size: 0.75rem;
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      transition: border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+      margin-top: 0.75rem;
+    }
+
+    .play-button:hover {
+      transform: scale(1.05);
+      border-color: #fff;
+      background-color: transparent;
+    }
+
+    .play-pause-icon {
+      width: 16px;
+      height: auto;
+      display: block;
+    }
+
+    .soundbite-float {
+      position: relative;
+    }
+
+    .soundbite-left .pudding-soundbite {
+      position: absolute;
+      left: -220px;
+      top: 0;
+    }
+
+    .soundbite-right .pudding-soundbite {
+      position: absolute;
+      right: -220px;
+      top: 0;
+    }
+
+    @media (max-width: 1000px) {
+      .soundbite-left .pudding-soundbite,
+      .soundbite-right .pudding-soundbite {
+        position: static;
+        margin: 2rem auto;
+      }
+    }
+
+    .case-study-section {
+      background-color: #F7D149;
+      padding: 3rem 1rem;
+      margin: 2rem 0;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+    }
+
+    .case-study-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .case-study-text {
+      flex: 1;
+      color: #000;
+      font-weight: 400;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .case-study-text h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .case-study-text header {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #D64200;
+      margin: 0 0 1rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid #D64200;
+    }
+    .case-study-scroll {
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 1rem;
+    }
+
+    .case-study-image {
+      position: relative;
+      flex: 1;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .case-study-image img {
+      position: absolute;
+      height: 350px;
+      width: auto;
+      max-width: 100%;
+      top: -15px;
+      left: 33%;
+      transform: translateX(-33%);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .case-study-image img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .case-study-caption {
+      position: absolute;
+      bottom: -2.5rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .case-study-caption p {
+      display: none;
+      color: #000;
+      font-size: 0.95rem;
+      font-style: italic;
+      margin: 0 auto;
+      padding: 0.4rem 0.8rem;
+      background-color: #fff;
+      text-align: center;
+      width: fit-content;
+      border-radius: 0;
+    }
+
+    .case-study-caption p.active {
+      display: inline-block;
+    }
+
+    .gif-graph {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      display: block;
+      margin: 2rem auto;
+    }
+
+    .dot-graph-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      display: block;
+      margin: 2rem auto;
+    }
+
+    .graph-bg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .dots-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .dots-layer circle {
+      fill: #F7D149;
+      r: 5;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .image-text-block {
+      display: flex;
+      gap: 2rem;
+      margin: 4rem 0;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .image-text-image {
+      flex: 1;
+      max-width: 300px;
+      margin-top: 1.5rem;
+    }
+
+    .image-text-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .image-text-content {
+      flex: 2;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .balloon-note-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .balloon-note-container img {
+      width: 100%;
+      display: block;
+    }
+
+    .balloon-note-container textarea {
+      position: absolute;
+      top: 69%;
+      left: 15%;
+      width: 60%;
+      height: 24%;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-family: 'Shadows Into Light', cursive;
+      resize: none;
+      outline: none;
+      text-align: left;
+      line-height: 1.3;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+    .balloon-note-container textarea::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .balloon-note-container textarea::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    .mobile-single-image {
+      display: none;
+    }
+
+  /* MOBILE */
+    @media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-text h1 {
+    font-size: 7rem !important;
+    text-align: left;
+  }
+
+  .hero-text, .hero-image {
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  .hero-subline {
+    padding-right: 2rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .disclaimer {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .soundbite-left,
+  .soundbite-right {
+    position: static !important;
+    height: auto !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .soundbite-text {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .soundbite-container {
+    margin-bottom: 1rem !important;
+  }
+
+  .soundbite-container audio {
+    margin-bottom: 0.5rem;
+  }
+
+  .soundbite-container details {
+    margin-top: 0.25rem;
+  }
+  
+  .image-text-block {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .image-text-image, .image-text-content {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .balloon-note-container textarea {
+    top: 68%;
+    left: 10%;
+    width: 80%;
+  }
+
+  .image-switcher button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+   .case-study-section {
+    padding: 3rem 0;
+  }
+
+  .case-study-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .case-study-text {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .case-study-scroll {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+  
+  .case-study-image {
+  display: none;
+  }
+
+  .mobile-single-image {
+    display: block;
+    margin: 2rem auto 0 auto;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .mobile-single-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .mobile-single-image p {
+    font-size: 0.9rem;
+    font-style: italic;
+    background: #fff;
+    color: #000;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    width: fit-content;
+    margin: 0.5rem auto 0 auto;
+  }
+
+}
+    
+  </style>
+</head>
+
+<body>
+  <!-- hero section -->
+  <div class="hero">
+    <div class="hero-text">
+      <p style="font-size: 1rem; color: #aaa; margin: 0 0 0.5rem 0;">FEATURE</p>
+      <h1 class="uk-heading-large" style="font-size: 9rem; line-height: 1; margin: 0 0 1rem 0;"><del>ERASED</del></h1>
+      <p class="hero-subline" style="font-size: 1.25rem; margin: 0 0 0.5rem 0;">Can design help redraw the connections erased by loneliness?</p>
+      <p style="font-size: 1rem; color: #aaa; margin: 0.5rem 0 0.5rem 0;">By Giulia Serrelli | July 9, 2025</p>
+      <p class="disclaimer">
+        This story touches on experiences of loneliness and triggering content. If you or someone you know is struggling,
+        <a href="https://www.samaritans.org/" style="color: #fff; text-decoration: underline;">support is available.</a>
+      </p>    
+    </div>       
+    <div class="hero-image">
+      <figure style="margin: 0;">
+        <img src="public/illustrations/redrawn-square.png" alt="Illustration of a person suspended in free fall, symbolising their erasure and how they are being redrawn"/>
+        <!-- <figcaption style="font-size: 0.9rem; color: #aaa; font-style: italic; margin-top: 0.5rem; padding-left: 1rem; padding-right: 1rem;">
+          Redrawing the outlines of connection, design by Giulia Serrelli
+        </figcaption> -->
+      </figure>
+    </div>
+  </div>
+
+    <!-- listen to article section -->
+    <div role="region" aria-label="Audio Player" id="sticky-audio-wrapper" style="position: sticky; top: 0; z-index: 1000;">
+      <div style="background: #000; width: 100vw; position: relative; left: 50%; margin-left: -50vw; border-bottom: 1px solid #333;">
+        <div style="max-width: 700px; margin: 0 auto; padding: 1rem;">
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: #aaa; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+            Listen to the article
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="play-button" id="main-play" role="button" aria-label="Play or pause audio" aria-pressed="false">
+              <img src="public/illustrations/play.png" alt="Play icon" class="play-pause-icon"/>
+            </button>
+            <div style="flex: 1; height: 4px; background: #333; position: relative; cursor: pointer;" aria-label="Audio progress" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+              <div id="main-progress" style="width: 0%; height: 100%; background: #fff;"></div>
+            </div>
+            <span id="main-duration" style="font-size: 0.75rem;" aria-live="polite">00:00</span>
+           <label for="main-volume" style="display: flex; align-items: center; gap: 0.4rem;">
+            <img src="public/illustrations/speaker.png" alt="Volume icon" style="width: 16px; height: auto;" />
+            <input type="range" id="main-volume" min="0" max="1" step="0.01" value="1"
+              aria-label="Volume control"
+              style="width: 100px; height: 3px; background: transparent; accent-color: #F7D149; outline: none; border-radius: 2px;">
+          </label>
+            <audio id="main-audio">
+              <source src="public/audio/listen-erased.mp3" type="audio/mp3"/>
+            </audio>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mental-health-popup" id="mentalHealthPopup" aria-label="Mental health support popup">
+      <div class="popup-text">
+        If you're feeling lonely, support is available.
+        <br/>You can contact <strong>Samaritans</strong> on <strong>116 123</strong> or <br/>visit
+        <a href="https://www.samaritans.org" target="_blank">www.samaritans.org</a> for help and advice.
+      </div>
+      <button class="popup-close" onclick="document.getElementById('mentalHealthPopup').style.display='none'" aria-label="Close mental health popup">×</button>
+    </div>
+    
+
+    <!-- main content -->
+    <div class="main-content">
+    <p><b>One in 14 people in England now lives with chronic loneliness. Behind those numbers are people like Bobbie, whose sense of self is fading. As loneliness rises – and is recognised as a global public health priority – some are asking if connection can be designed.</b></p>
+    <hr style="margin: 1rem auto; border: none; border-top: 1px solid #444; max-width: 700px;"/>
+    <p>It’s one of those invigorating sunny days in the capital city, the kind that draws people together, outside. But inside the flat at number 119, the sunrays more cautiously seep through the edges of a curtain and 62-year-old early retiree, Bobbie* sits just out of reach of them, her soft outline growing fainter with time.</p>
+    <p>“I feel like my life is slowly being erased; I feel like I no longer recognise myself,” Bobbie shares from her single orange armchair in her living room.</p>
+    <p>When the COVID-19 lockdown hit, Bobbie’s world shifted overnight. Gone were the busy routines, the buzz of daily life, and the usual rhythm of social interactions. Without them, her ties with others faded and her will to nurture those connections dissipated.</p>
+  
+    <h2 class="subheading">Loneliness frays your sense of self</h2>
+
+    <p>Loneliness is more than just a feeling – it is a quiet, steady unravelling.</p>
+    <p>According to the World Health Organization (WHO), loneliness is not just a social issue; it’s a significant public health concern, impacting both mental and physical health. <a href="https://apps.who.int/gb/ebwha/pdf_files/WHA78/A78_ACONF2-en.pdf" target="_blank" style="color: #ffffff; text-decoration: underline;">Aligned to this, this May – during the 78th World Health Assembly – WHO called for social connection to be recognised as a global health priority.</a></p>
+    <p>General Practitioner, Dr. Sam Hartley stresses how loneliness can deeply erode mental wellbeing: “People who are lonely often stop seeing the point in looking after themselves. And over time, that neglect eventually takes a physical toll.”</p>
+    <p>This is an impact that Bobbie is starting to reckon with. “I no longer have the motivation of doing even the most basic things like taking care of myself: I don’t shower, I don’t cook, I don’t eat,” she confesses.</p>
+    <p>Over the years, loneliness has gradually left its marks on Bobbie’s body. “People tell me I’ve lost a lot of weight – to be honest I can no longer really understand the numbers on the scale. Some of my teeth have rotted away and my hair has fallen out,” she says as she takes off her wig, her rough hands caressing the patches of what is left of her salt and pepper hair.</p>
+
+    <!-- image switcher -->
+    <div class="image-switcher">
+      <button class="prev" onclick="switchImage(-1)" aria-label="Previous photo">‹</button>
+      <button class="next" onclick="switchImage(1)" aria-label="Next photo of Bobbie">›</button>
+      <img src="public/photos/Bobbie5.png" class="active" alt="Bobbie’s reflection in a mirror, evoking a fading sense of self"/>
+      <img src="public/photos/Bobbie1.png" alt="Bobbie sitting in the orange chair"/>
+      <img src="public/photos/Bobbie2.png" alt="A close up of Bobbie's eye"/>
+      <img src="public/photos/Bobbie3.png" alt="A close up of Bobbie's aged hands"/>
+      <img src="public/photos/Bobbie4.png" alt="A selection of Bobbies wigs"/>
+    </div>
+
+    <div class="caption" id="image-caption" aria-live="polite" aria-atomic="true">Captions of the photos</div>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <p>Physical changes are not the only way loneliness erases one’s sense of self; people lose the outlines of who they are.</p>
+    <p>Identity is so often reflected and reinforced through the presence of others. Hartley describes loneliness as “not so much about being alone – it’s about lacking connection.” As interactions like shared jokes, remembered stories and even physical platonic gestures like hugs are lacking, the sense of self begins to blur.</p>
+    <p>For 34-year-old history teacher Josh, loneliness was something that “settled like a black feeling in [his] stomach.” Living in London, he often felt invisible amid thousands: “There’s so much happening, so many chances to be seen – but that need never quite gets fulfilled.”</p>
+    <p>The cruel irony is that the longer loneliness lingers, the harder it becomes for someone to reconnect. <a href="https://www.bps.org.uk/psychologist/tragedy-loneliness" target="_blank" style="color: #ffffff; text-decoration: underline;">People who are lonely are more likely to lack trust – they look negatively at those around them and are less hopeful about positive social interactions as a sort of self-protection.</a></p>
+    <p>Sharing that she gets very anxious even when thinking about leaving her house, Bobbie admits that she creates excuses to evade the need to: “Although I have now come to hate my loneliness, I still feel the safest alone. It’s a funny thing, isn’t?”</p>
+    
+    <h2 class="subheading">A lot more people than we think have felt lonely</h2>
+
+    <p>Bobbie and Josh are far from alone in experiencing chronic loneliness, that feeling of feeling lonely often or always.</p>
+    <p>The latest <a href="https://www.gov.uk/government/statistics/community-life-survey-202324-annual-publication/community-life-survey-202324-loneliness-and-support-networks--2" target="_blank" style="color: #ffffff; text-decoration: underline;">Community Life Survey</a> by the Department for Culture, Media & Sport estimate that around three million people in England live with chronic loneliness – roughly one in 14.</p>
+    <p>At his practice in Greens Norton, a village located in Northamptonshire, Hartley recounts seeing loneliness across a wide spectrum of patients, from a terminally ill man with no one to share his final weeks, to a young mother of three struggling with suicidal thoughts.</p>
+    <p>Even more striking: only 20 per cent of respondents said they never felt lonely. That means 80 per cent have felt lonely at some point in their life. When used as a benchmark for the population of England, this estimate translates to approximately 46 million people: enough to fill 578,000 double-decker buses bumper-to-bumper, from London to Beijing and back.</p>
+
+    <!-- bus illustration -->
+    <div class="full-width-image">
+      <img src="public/graphs/bus.png" alt="Illustration showing a long line of double-decker buses representing the estimated 46 million people who have felt lonely in England">
+    </div>  
+
+    <p>What the survey results also highlight is that loneliness is not uniformly affecting people across the country.</p>
+
+    <!-- infographics with click and text block-->
+    <div class="image-text-block uk-margin-large-top">
+      <div class="image-text-image">
+        <img src="public/graphs/overall.png" alt="Infographic: One in 14 people in England feel lonely often or always"/>
+        <div style="text-align: center; margin-top: 1rem;">
+          <a href="public/graphs/overall.png" target="_blank" class="infographic-button">
+            View the infographic
+          </a>
+        </div>
+      </div>
+      <div class="image-text-content">
+        <p>Younger adults, aged 16-24 reported the highest levels of chronic loneliness at 10 per cent, followed closely by those aged 25-34 with nine per cent. People with disabilities were five times more likely to report feeling lonely ‘often or always’ compared to people without disabilities. Gender disparities were also evident with eight per cent of women experiencing chronic loneliness compared to six per cent of men; notably, adults whose gender identity differs from their sex registered at birth, reported the highest levels at 19 per cent.</p>
+      </div>
+    </div>
+
+    <p>Sexual orientations, ethnic backgrounds, socioeconomic factors and urban vs non-urban living also influenced loneliness levels.</p>
+    <p>Beyond its personal toll, loneliness also exerts pressure on the NHS. “We see patients more frequently simply because they are lonely,” Hartley says. “And the ones we don’t see – the ones who never come – they often end up in severe states of neglect.” Malnourishment, unmanaged conditions, and anxiety spiral silently until intervention is no longer optional – but urgent.</p>
+    <p>Importantly, the results show that loneliness is on the rise.</p>
+
+    <!-- animated line graph -->
+    <div class="animated-graph">
+      <img src="public/graphs/growth-background.png" alt="Loneliness graph" class="graph-bg" />
+      <div class="graph-line-wrapper">
+        <object type="image/svg+xml" data="public/graphs/growth-line.svg" class="graph-line" aria-label="Line graph showing the increase of loneliness rates across years"></object>
+      </div>
+    </div>
+
+    <div class="replay-container">
+      <button onclick="replayLineAnimation()" class="replay-button">
+        Replay the animation 
+      </button>
+    </div>  
+
+    <p>Hartley notes that loneliness is still shrouded in stigma. “People will often come to me with symptoms that clearly stem from isolation, but they rarely say, ‘I’m lonely’,” he shares. “It’s only when asked directly that they sometimes recognise it.” That silence contributes to the invisibility of the issue – even as it grows.”</p>
+    <p>So, how do we stop these figures from growing and erasing more people’s sense of self?</p>
+    
+    <h2 class="subheading">Can digital tools help us redraw connection?</h2>
+
+  <!-- sticky soundbite with text -->
+  <div style="position: relative;">
+
+  <!-- sticky Gabi -->
+  <div class="soundbite-right" style="position: sticky; top: 100px; height: 0;">
+    <div class="pudding-soundbite">
+      <img src="public/illustrations/gabi.png" alt="An abstract, anonymous, illustration of Gabi" class="pudding-head"/>
+      <div class="pudding-name">
+        Listen to Gabi
+      </div>
+      <button class="play-button" onclick="toggleSoundbite(this)" aria-label="Play or pause soundbite from Gabi">
+        <img src="public/illustrations/play.png" alt="Play" class="play-pause-icon"/>
+      </button>
+      <audio>
+        <source src="public/audio/gabi.mp3" type="audio/mp3"/>
+      </audio>
+
+    <!-- transcript for Gabi -->
+    <div style="height: auto; min-height: 170px;">
+      <details style="margin-top: 0.5rem; font-size: 0.85rem; color: #ccc; text-align: center;" aria-label="Toggle transcript for Gabi’s soundbite">
+        <summary style="cursor: pointer;">Read the transcript</summary>
+        <div style="margin-top: 0.5rem; max-width: 160px;background: #000; padding: 0.5rem; text-align: left; overflow-y: auto; max-height: 120px; border: 1px solid #333; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            Finding – and building – community was one of the most important things for me after I moved to a country that was very far away and different from home; while I had a partner, I had no family or friends of my own, and this felt really scary.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            I remember one particular situation when, about five months into my new life, my partner had to be away for a week; we were both worried that I would be alone – and lonely.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            But slowly, those I had already met started to feel like a community – showing support and being present in their own way: the family I found in my partner’s, the classmates in my language course, the people I connected with in creative bubbles and workshops, and the friends that I made even through meeting apps!</p>
+        </div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- scrolly text for Gabi -->
+  <div>
+    <p>We live in an age where connection is a tap away.</p>
+    <p>For 30-year-old student, Gabi, moving to a new country that was far away and different from her home felt scary. Digital apps allowed her to connect with new friends: “Slowly, those I had already met started to feel like a community – showing support and being present,” she shares.</p>
+    <p>However, even in a heavily dominated digital world, loneliness persists.</p>
+    <p>While Gabi found support through digital tools, Bobbie’s experience shows how easily those same platforms can fall short: “I used to scroll a lot on Facebook, but I didn’t really start a conversation or create content; I would simply share stuff,” Bobbie shares.</p>
+    <p>Bobbie’s experience mirrors a growing critique of digital interaction. <a href="https://journalofethics.ama-assn.org/article/internet-and-loneliness/2023-11" target="_blank" style="color: #ffffff; text-decoration: underline;">Mindless scrolling and surface-level exchanges</a> on messaging apps and social media may simulate connection, but rarely build it. <a href="https://www.wired.com/story/loneliness-epidemic-romance-scams-security-crisis/" target="_blank" style="color: #ffffff; text-decoration: underline;">Algorithms can even steer vulnerable people towards false intimacy – including extremist groups and predatory scams.</a></p>
+    <p>Research like the University of Bath’s <a href="https://www.bath.ac.uk/projects/loneliness-in-the-digital-age/" target="_blank" style="color: #ffffff; text-decoration: underline;">Loneliness in the Digital Age</a> confirms this: tech that lacks trust, empathy, or intention can worsen isolation.</p>
+    <p>This concern is shared by the founder and Chief Executive Officer of Replika, Eugenia Kuyda. Replika is an app that allows you to create AI friends and simulate conversations with them – it’s aim is to ease emotional isolation.</p>
+  </div>
+</div>
+
+    <p>Where some users have found comfort, in her <a href="https://www.youtube.com/watch?v=-w4JrIxFZRA&ab_channel=TED" target="_blank" style="color: #ffffff; text-decoration: underline;">TED Talk for TEDAI San Francisco</a>, Kuyda questions if AI companions like Replika can truly heal loneliness, warning: “Relationships that keep us addicted are almost always unhealthy.”</p>
+    <p>For Kuyda, AI companions walk a fine line. They should be intentionally designed to encourage real human connections, they should act as a bridge: “This technology should push us to meet people, not replace them,” Kuyda stresses.</p>
+    <p>These digital substitutes reveal a hard truth: without empathy, trust, and care, tech alone can’t redraw connection. It’s not the presence of tools, but the intention behind them that matters. It’s about making real what feels real in the digital world.</p>
+    
+    <h2 class="subheading">Drawing people in</h2>
+
+    <p>Placing community at the heart of the solution is central.</p>
+    
+    <p>Hartley believes that social prescribing is a key tool in addressing loneliness: “Sometimes the solution isn’t a pill, but a place or a person,” he explains. “We used to work closely with dedicated link workers, referring multiple patients a week for social prescribing, now, with NHS cutbacks, that team has been reduced. It’s frustrating – because these referrals can change lives.”</p>
+    <p>This is also the philosophy and recent shift the UK Government has taken in recent years, and the foundation of its <a href="https://www.gov.uk/government/publications/a-connected-society-a-strategy-for-tackling-loneliness" target="_blank" style="color: #ffffff; text-decoration: underline;"> first-ever loneliness strategy</a> and its appointment of the <a href="https://www.gov.uk/government/news/loneliness-minister-its-more-important-than-ever-to-take-action?utm_source=chatgpt.com" target="_blank" style="color: #ffffff; text-decoration: underline;">first Minister for Loneliness.</a></p>
+    <p>Through initiatives like the <a href="https://www.tnlcommunityfund.org.uk/funding/programmes/local-connections-fund-round-1?utm_source=chatgpt.com" target="_blank" style="color: #ffffff; text-decoration: underline;">Local Connections Fund</a>, the Government has supported small grassroots projects – a gardening club in Bradford, a knitting group in Kent, a shared lunch scheme in Glasgow. All are built on a simple but powerful premise: that regular, low-pressure interactions can slowly rebuild people’s sense of belonging.</p>
+    <p>Beyond the Government efforts, similar initiatives have been appearing all over the country.</p>
+    <p>One of them is <a href="https://www.talkintables.co.uk/home" target="_blank" style="color: #ffffff; text-decoration: underline;">Talkin’ Tables</a>, a charity that creates inclusive, open spaces for conversation by partnering with local businesses. The leader for Chichester’s space, Doug Price, explains how the idea to set up something like Talkin’ Tables came to him while he was collecting Christmas donations in Chichester’s town square: “People didn’t just stop to give – they stayed to chat. It struck me how many were just craving a moment of connection, even with a stranger.”</p>
+    <p>At Talkin’ Tables, there is no agenda and no expectation according to Price: “People sit, talk, leave – or stay. There’s a power in that simplicity. We are really trying to offer a place where people can feel seen.”</p>
+    <p>It’s a move towards a culture where connection isn’t left to chance.</p>
+
+    <!-- video section -->
+    <hr style="margin: 3rem auto; border: none; border-top: 1px solid #444; max-width: 700px;"/>
+    <div style="margin-bottom: 1rem;">
+      <div style="font-size: 0.75rem; color: #aaa; text-transform: uppercase; margin-bottom: 0.5rem;">
+        ALWAYS A STRANGER | A POEM BY JOHN, TALKIN' TABLES MEMBER
+      </div>
+
+      <video id="poem-video"
+        controls
+        width="100%"
+        preload="none"
+        aria-label="Watch video poem Always a Stranger by Talkin’ Tables member John"
+        poster="public/photos/always-a-stranger-thumbnail.png"
+        style="max-width: 700px; display: block; margin-left: 0;"
+        aria-label="Watch video poem Always a Stranger by Talkin’ Tables member John">
+        
+        <source src="public/video/always-a-stranger-transcoded.webm" type="video/webm" />
+        <source src="public/video/always-a-stranger-transcoded.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <details style="margin-top: 1rem; max-width: 700px; color: #ccc; font-size: 0.85rem;">
+    <summary style="cursor: pointer;">Read the poem</summary>
+    <div style="margin-top: 0.2rem; background: #111; padding: 1rem; border: 1px solid #333; line-height: 1.4;">
+      <p style="font-size: 0.85rem;"><b>Always a Stranger</b></p>
+      <p style="font-size: 0.85rem;">His parents moved house so many times<br>He had to be strong just to survive<br>Wherever they went he had to go too<br>Always a stranger in some place new</p>
+      <p style="font-size: 0.85rem;">At each school he made new friends<br>But he was never really a part<br>He was always a stranger<br>Making a new start</p>
+      <p style="font-size: 0.85rem;">Then as an adult he moved many times too<br>Like a rolling stone<br>Always a stranger<br>Mostly alone</p>
+      <p style="font-size: 0.85rem;">Most had lived there all their lives<br>So knew each other friends and wives<br>So somebody new stood apart<br>Always a stranger making a new start</p>
+      <p style="font-size: 0.85rem;">He would walk on the street<br>Watch others greet<br>Then sit alone in a bar<br> Always a stranger<br>Looking in from afar</p>
+    </div>
+  </details>
+
+  <hr style="margin: 4rem auto; border: none; border-top: 1px solid #444; max-width: 700px;"/>
+
+  <!-- sticky soundbite with text -->
+  <div style="position: relative;">
+
+  <!-- sticky Josh -->
+  <div class="soundbite-left" style="position: sticky; top: 100px; height: 0;">
+    <div class="pudding-soundbite">
+      <img src="public/illustrations/josh.png" alt="An abstract, anonymous, illustration of Josh" class="pudding-head"/>
+      <div class="pudding-name">
+       Listen to Josh
+      </div>
+      <button class="play-button" onclick="toggleSoundbite(this)" aria-label="Play or pause soundbite from Josh">
+        <img src="public/illustrations/play.png" alt="Play" class="play-pause-icon"/>
+      </button>
+      <audio>
+        <source src="public/audio/josh.mp3" type="audio/mp3" />
+      </audio>
+
+    <!-- transcript for Josh -->
+    <div style="height: auto; min-height: 170px;">
+      <details style="margin-top: 0.5rem; font-size: 0.85rem; color: #ccc; text-align: center;" aria-label="Toggle transcript for Josh’s soundbite">
+        <summary style="cursor: pointer;">Read the transcript</summary>
+        <div style="margin-top: 0.5rem; max-width: 160px;background: #000; padding: 0.5rem; text-align: left; overflow-y: auto; max-height: 120px; border: 1px solid #333; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            For me, loneliness doesn't presents itself to me as a thought. Loneliness is something that I feel it emerges and settles as a black feeling in my in my stomach; which I often felt living in cities like London for a long time, where the overwhelming amount of people and activity and the feeling of – I guess – insignificance, and the desire to be seen amidst all those opportunities to be seen, yet which often was never really fulfilled, I think, is how loneliness manifested itself to me.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            Although,  in my own life I've never really conceptualised loneliness as a problem; I have never sat down and I've never tried to pin my feelings or house them within conceptual categories. I'd always believe that that black feeling would be somewhat related to loneliness, and my attempt to deal with that feeling would often be things related to the need for either empathy or understanding otherpeople, almost trying to go through that black feeding into other people's lives.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            And obviously being surrounded by company and having close friends, you take it for granted that that feeling doesn't manifest itself as often. And I haven't felt it for for a very long time, actually. So, maybe I haven't been lonely.</p>
+        </div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- scrolly text for Josh -->
+  <div>
+    <h2 class="subheading">Intentionally designing cities to connect us</h2>
+    <p>If connection isn’t left to chance, then, what if loneliness then can be intentionally designed out?</p>
+    <p>That’s the vision behind a growing movement to rethink the built urban space, not just as a backdrop to daily life, but as an active player in shaping it.</p>
+    <p>Architects, urban designers and passionate citizens are asking how streets, parks and public buildings can connect us to each other – the small, unplanned moments that help people feel part of a wider whole.</p>
+    <p>UK-born wellness writer and web designer, Niamh, has this topic at heart.</p>
+  </div>
+</div>
+  
+  <p>In her 20s, Niamh has just completed a six-week solo van trip across Japan sparked an unexpected revelation: “Although I was in essence alone, at no point did I ever feel lonely, because pretty much every day, I’d have a conversation with a stranger,” she shares.</p>
+  <p>That daily human contact wasn’t random; to Niamh, was the result of the urban space design.</p>
+  <p>In the rural Japanese towns Niamh stayed in, she noticed how the built environment subtly created community: public parks with communal sinks and showers, free campsites, bathhouses co-managed by residents, and climbing cafes that doubled as co-working spaces. “People could just exist there together, doing completely different things – someone crocheting, someone climbing, someone writing marketing emails,” she explains with a glimmer of fascination on her face.</p>
+  <p>It stood in contrast to parts of the UK where social spaces often revolve around a pub and alcohol. What emerged to Niamh was a sense of belonging. “There’s just something about a space that has been designed with the intention and care to create connection. About a space that has been designed to make you feel like you are welcome here,” Niamh adds.</p>
+
+    <!-- case study section -->
+    <section class="case-study-section">
+      <div class="case-study-container">
+        <div class="case-study-text">
+          <header>CASE STUDY</header>
+          <h2>Make @ Story Garden: A place for creating energy</h2>
+          <div class="case-study-scroll">
+            <p data-image="0">Tucked behind the British Library, in the heart of London’s bustling King’s Cross, sits a patch of calm greenery: Story Garden. Over the years, the garden has bloomed into a community anchor point. Within it sits <a href="https://www.arts.ac.uk/colleges/central-saint-martins/csm-public/make-story-garden" target="_blank" style="color: #D64200; text-decoration: underline;">Make @ Story Garden</a>, a collaborative space built for creation, conversation, and connection.</p>
+            <p>Make @ Story Garden was born from partnerships between the charity Global Generation, Central Saint Martins, developers like Lendlease, and the Somers Town community. It was imagined as a meanwhile initiative – a temporary studio for social design. Since opening around 2019, it has shown that something temporary can still have a lasting mark.</p>
+            <p data-image="1">Running its day-to-day rhythm is, Make’s Technical Officer, artist and educator, Simeon Featherstone. “I don’t teach anything in that sense here,” he clarifies. “I am a facilitator. I give people the time and space – and maybe some support – to work it out themselves.”</p>
+            <p>Make @ Story Garden isn’t about the finished product, rather, it’s about the creation. “We’re not making things,” Featherstone says. “We’re making energy.”</p>
+            <p>That spirit is lived out daily. In repurposed shipping containers, people learn to use drills, mould clay, and print posters. But alongside learning these practical skills, they chat, share knowledge, and open up. “People jabber away when they come here,” Featherstone notes. “You start talking about politics, housing, identity… You realise you’re not so different after all.”</p>
+            <p>As things are made, so too are relationships.</p>
+            <p data-image="2">Over time, Make has become a refuge – not just a place to do, but a place to be. “GPs refer patients struggling with isolation to this space,” Featherstone shares. The combination of greenery, creativity, and low-pressure interaction has made Make a quiet form of social prescription: a space for rebuilding connection.</p>
+            <p>Crucially, this isn’t a top-down initiative. Featherstone explains how decisions affecting the space are taken by listening to the community. “We once floated plans for 3D printers, but when we spoke to the community, we soon realised they had other preferences,” Featherstone recalls. “It’s not about creating for the community; it’s about creating with them – and meeting their needs.”</p>
+            <p>Though the physical site is now nearing its end, with the garden being relocated, the impact lives on. Featherstone believes that the model – flexible, hyper-local, relational – is replicable, so long as it listens before it builds. “People who came here will go looking for something like it again,” Featherstone says. “And maybe, they’ll even make it themselves.”</p>
+          </div>
+        </div>
+        <div class="case-study-image" id="case-image">
+          <img src="public/photos/make.png" alt="Directional sign pointing to Make @ Story Garden, a creative social space in London" class="active"/>
+          <img src="public/photos/learning.png" alt="A pot inscribed with words about the value of learning and growing together"/>
+          <img src="public/photos/simeon.png" alt="Portrait of Simeon Featherstone, Technical Officer at Make @ Story Garden"/>
+          <div class="case-study-caption" id="case-caption">
+            <p class="active">Pointing the way</p>
+            <p>A creative journey</p>
+            <p>Simeon Featherstone</p>
+          </div>
+        </div>
+        <div class="mobile-single-image">
+        <img src="public/photos/simeon.png" alt="Portrait of Simeon Featherstone, Technical Officer at Make @ Story Garden"/>
+        <p>Simeon Featherstone</p>
+      </div>
+      </div>
+    </section>
+
+    <!-- back to main content -->
+    <h2 class="subheading">Sketching a blueprint for active belonging</h2>
+
+    <p>This concept of an intentional and caring urban design, one that can foster connection is the ethos of initiatives like <a href="https://www.lonelinesslab.org/" target="_blank" style="color: #ffffff; text-decoration: underline;">The Loneliness Lab</a>, a collaborative project in London exploring how infrastructure can help combat disconnection.</p>
+    <p>Architect, director and co-founder of IF_DO, Thomas Bryans, was a contributor to the Lab. “The initiative was a direct response to residents in new London developments reporting isolation as their primary concern,” Bryans shares.</p>
+    <p>The Lab brought together a broad coalition of designers, researchers, and – crucially – people with lived experience of loneliness to look to redraw urban spaces: “Everyone was an expert in their own way,” Bryans adds.</p>
+    <p>They experimented with simple interventions like chatty benches and open studios to create bumping spaces – in other words, settings that make casual social moments more likely.</p>
+    <p>Bryans’ team’s project focused specifically on the social housing block behind Stratford Tower.</p>
+    <p>Not wanting to make any assumptions, Bryan explains how the first thing the team did was put up a very basic, handwritten graph with a line and colourful dots that asked the residents how connected they felt: “There were just two extremes on the scale: ‘I feel connected’ or ‘I don’t feel connected’,” Bryans recalls, noting how the dots clustered heavily at the disconnected end.</p>
+    
+    <div class="dot-graph-wrapper">
+      <img src="public/graphs/line-background.png" alt="Line graph without dots" class="graph-bg" />
+      <svg class="dots-layer" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot graph showing residents’ self-reported sense of connection" tabindex="0"></svg>
+    </div>
+
+      <p id="dot-message" style="text-align: center; color: #ccc; margin-top: 1rem; font-style: italic;">
+      Click on the line to add your own dot once the animation ends.
+      </p>
+
+    <div class="replay-container">
+      <button onclick="replayDotAnimation()" class="replay-button">
+        Replay the animation and clear your dot
+      </button>
+    </div>
+
+    <p>And so, the team set up a temporary installation using bright yellow balloons – deliberately vivid against the grey concrete – each tied with a luggage tag inviting residents to write something about their memories, hopes, or feelings about the place. “It was nothing fancy,” Bryans says. “Just a string, a pen, and a question.”</p>
+
+    <!-- calloons and text block -->
+    <div class="image-text-block uk-margin-large-top">
+      <div class="image-text-image">
+        <div class="balloon-note-container">
+          <img src="public/illustrations/balloon-text.png" alt="Cluster of bright yellow balloons with handwritten tags, symbolising the start of connection"/>
+          <textarea placeholder="Type your own message, max 140 characters..." maxlength="140" aria-label="Write your own message to be displayed on the balloon"></textarea>
+        </div>
+      </div>
+      <div class="image-text-content">
+        <p>Yet, it stirred something.</p>
+        <p>One tag read: ‘I’m Somali and I’m new here.’ Another: ‘I remember watching this estate being built.’</p>
+        <p>Two lives, two generations, two vastly different experiences suddenly visible to each other.</p>
+        <p>And critically, it all happened just outside residents’ front doors. “That threshold is important,” Bryans explains. “We’re often passive consumers of space. This kind of design invites people to be active participants. It says: you belong here, you can be part of this.”</p>
+      </div>
+    </div>
+
+    <p>The principle is simple: cultivate active participation to gradually build trusting relationships. It’s the fundamental aspect of an intentional urban space blueprint for belonging.</p>
+
+    <h2 class="subheading">Design can invite, but can’t insist</h2>
+
+    <p>But not everyone is convinced design can deliver on its promise.</p>
+    <p>Architect Shaun Matthews, who explored loneliness and space deeply for his master’s and now works with GPAD, cautions against overestimating the built environment’s role. “Design nudges, but it can only do so much” he says. “It doesn’t determine. You can place a chair by the window to invite connection – but you can’t make someone sit in it.”</p>
+    <p>Matthews estimates that thoughtful and intentional design might account for just 10 to 15 per cent of social connection – the actual impact, however, is shaped by less visible factors: mental health, trauma, cultural norms.</p>
+    <p>More pressing, he warns, is that systemic barriers often define what gets built, and what doesn’t. Despite growing awareness of loneliness as a public health concern, design solutions that aim to foster connection often fail to gain momentum.</p>
+    <p>One reason, Matthews notes, is the absence of measurable evidence. “When it comes to buildings, we’re used to engineering metrics: strength, cost, safety. But how do you quantify a moment of connection?”</p>
+    
+    <!-- corridor and text block -->
+    <div class="image-text-block uk-margin-large-top">
+      <div class="image-text-image">
+        <img src="public/illustrations/corridor.png" alt="Illustration of an anonymous corridor symbolising bad design"/>
+      </div>
+      <div class="image-text-content">
+      <p>Because connection is deeply personal and often invisible, policymakers and developers struggle to justify it. In a system driven by return on investment, anything that can't be counted is easily sidelined. “There’s no mandate to do better,” Matthews says. “If a design is more expensive but might make people feel better, the response is: where’s the evidence?”</p>
+      <p>We know what bad design looks like – anonymous corridors, misaligned doors, windowless kitchens – but proving when a space works is far harder. “What works for one person might alienate another,” Matthews adds. “There’s no universal blueprint for belonging.”</p>
+      </div>
+    </div>
+
+    <p>This, however, doesn’t mean design is powerless. It means it works best when paired with policy that values human connection not as a soft extra, but as a vital measure of success.</p>
+
+  <!-- cticky soundbite with text -->
+  <div style="position: relative;">
+
+  <!-- sticky Inês -->
+  <div class="soundbite-right" style="position: sticky; top: 100px; height: 0;">
+    <div class="pudding-soundbite">
+      <img src="public/illustrations/ines.png" alt="An abstract, anonymous, illustration of Inês" class="pudding-head"/>
+      <div class="pudding-name">
+        Listen to Inês
+      </div>
+      <button class="play-button" onclick="toggleSoundbite(this)" aria-label="Play or pause soundbite from Gabi">
+        <img src="public/illustrations/play.png" alt="Play icon" class="play-pause-icon"/>
+      </button>
+      <audio>
+        <source src="public/audio/ines.mp3" type="audio/mp3" />
+      </audio>
+
+    <!-- transcript for Inês -->
+    <div style="height: auto; min-height: 170px;">
+      <details style="margin-top: 0.5rem; font-size: 0.85rem; color: #ccc; text-align: center;" aria-label="Toggle transcript for Inês’ soundbite">
+        <summary style="cursor: pointer;">Read the transcript</summary>
+        <div style="margin-top: 0.5rem; max-width: 160px;background: #000; padding: 0.5rem; text-align: left; overflow-y: auto; max-height: 120px; border: 1px solid #333; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            One thing I’ve realised over time, is that being alone and feeling lonely aren’t the same. I used to think they were, but moving around so much made me realise they’re not.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+            I’ve spent a lot of time on my own – in new places, with new languages around me, new pets by my side. And honestly, being alone can be really comforting. It gives me room to breathe and reset.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 12px; line-height: 1.5;">
+           But loneliness is different. It’s not about who’s around you or where you are - it’s about whether you feel understood and seen. And it does show up sometimes, even when I’m in my hometown, surrounded by my family. It’s the feeling of being “without a ground”. When it does show up, I try to remind myself it won’t last. People come into your life when you least expect it. Things shift. And that helps.</p>
+        </div>
+      </details>
+    </div>
+
+
+    </div>
+  </div>
+
+  <!-- scrolly text for Inês -->
+  <div>
+    <h2 class="subheading">Redrawing what’s been erased</h2>
+    <p>Loneliness is not caused – or solved – in isolation. It is shaped by the rhythms we fall into, the systems we build, and the spaces designed without care.</p>
+    <p>And as 26-year-old communications strategist Inês – who has lived in many different country – shares, loneliness comes in waves: “When loneliness shows up, I try to remind myself it won’t last,” she says. “People come into your life when you least expect it. Things shift.”</p>
+    <p>But there are solutions to help with this shift. Connection can be designed; it can be grown, built, and even gently facilitated. The actions do not need to be grand; even in their smallness lies great power to meet people where they are.</p>
+    <p>On her good days, Bobbie sits at one of the outdoor tables at the café near her home. “When I am not feeling too anxious, I hang out here,” she shares. “I chat to a few people, but even when I don’t always talk to anyone, just being here as me helps me feel better.”</p>
+  </div>
+  </div>
+
+  <p>Because it’s not about tearing cities down or reinventing the wheel. As Niamh reflects: “There’s so much potential in reimagining places we already have to make them more welcoming.”</p>
+  <p>This said, for those efforts to last, they must be supported not just by local action, but by broader systemic and structural change. Until connection is seen not just as a feeling, but as infrastructure, it will remain an invisible sketch in every blueprint.</p>
+  <p>The question isn’t whether we can afford to design for belonging – it’s whether we can afford not to.</p>
+
+  </div>
+
+  <!-- my bio -->
+  <hr style="margin: 4rem auto; border: none; border-top: 1px solid #444; max-width: 700px;" />
+
+  <div style="display: flex; align-items: center; gap: 1.5rem; max-width: 700px; margin: 2rem auto; padding: 1rem;">
+    <img src="public/photos/giiules.png" alt="Illustration of Giulia Serrelli" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" />
+    <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+      Giulia Serrelli is a Master's student at Goldsmiths, University of London in Digital Journalism. This feature is part of her final project where she blends data with the art of storytelling and design. Other projects include <a href="https://tarot-app-production.up.railway.app/ " target="_blank" style="color: #ffffff; text-decoration: underline;">Mystic Tarots</a>.
+    </p> 
+  </div>
+
+  <!-- le footer -->
+  <footer style="padding: 1rem 4rem; background-color: #000; color: #aaa; font-size: 0.85rem; border-top: 1px solid #333; text-align: center;">
+    <p style="margin: 0; display: inline-block;">
+      *Name is an alias | Photos, illustrations and video have been created by Giulia | 
+      <a href="https://www.linkedin.com/in/giulia-serrelli/" target="_blank" style="color: #aaa; text-decoration: underline;">
+        Connect with Giulia on LinkedIn
+        <img src="public/illustrations/linkedin.png" alt="LinkedIn icon" style="height: 16px; width: auto; margin-left: 4px;"/>
+      </a>
+    </p>
+  </footer>
+
+<!-- JavaScript -->
+<script>
+const mainAudio = document.getElementById("main-audio");
+  const mainPlayButton = document.getElementById("main-play");
+  const mainIcon = mainPlayButton.querySelector("img");
+  const mainProgress = document.getElementById("main-progress");
+  const mainDuration = document.getElementById("main-duration");
+
+  mainPlayButton.addEventListener("click", () => {
+    // Pause all other soundbites
+    document.querySelectorAll(".pudding-soundbite audio").forEach(a => a.pause());
+    document.querySelectorAll(".pudding-soundbite .play-pause-icon").forEach(img => {
+      img.src = "public/illustrations/play.png";
+    });
+
+    if (mainAudio.paused) {
+      mainAudio.play();
+      mainIcon.src = "public/illustrations/pause.png";
+    } else {
+      mainAudio.pause();
+      mainIcon.src = "public/illustrations/play.png";
+    }
+  });
+
+  mainAudio.addEventListener("timeupdate", () => {
+    const percent = (mainAudio.currentTime / mainAudio.duration) * 100;
+    mainProgress.style.width = `${percent}%`;
+    const minutes = Math.floor(mainAudio.currentTime / 60).toString().padStart(2, '0');
+    const seconds = Math.floor(mainAudio.currentTime % 60).toString().padStart(2, '0');
+    mainDuration.textContent = `${minutes}:${seconds}`;
+  });
+
+  mainAudio.addEventListener("ended", () => {
+    mainIcon.src = "public/illustrations/play.png";
+  });
+
+    document.getElementById("main-volume").addEventListener("input", function () {
+    document.getElementById("main-audio").volume = this.value;
+  });
+
+  document.querySelector("#main-progress").parentElement.addEventListener("click", (e) => {
+    const container = e.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percent = clickX / rect.width;
+    const newTime = percent * mainAudio.duration;
+    mainAudio.currentTime = newTime;
+  });
+
+window.addEventListener("DOMContentLoaded", () => {
+  const svgObject = document.querySelector(".graph-line");
+
+  const handleSVGLoad = () => {
+    const svgDoc = svgObject.contentDocument;
+    if (!svgDoc) return;
+
+    const path = svgDoc.querySelector("path");
+    if (!path) return;
+
+    const length = path.getTotalLength();
+
+    // Style setup
+    path.style.stroke = "#ffffff";
+    path.style.fill = "none";
+    path.style.strokeWidth = "2";
+    path.style.strokeDasharray = length;
+
+    // Animation control functions
+    const resetAnimation = () => {
+      path.style.transition = "none";
+      path.style.strokeDashoffset = length;
+      path.getBoundingClientRect(); // Force reflow
+    };
+
+    const triggerAnimation = () => {
+      path.style.transition = "stroke-dashoffset 3s ease-out 0.5s";
+      path.style.strokeDashoffset = "0";
+    };
+
+    // Set up animation reset initially
+    resetAnimation();
+
+    // Trigger animation on scroll into view
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          triggerAnimation();
+        }
+      });
+    }, { threshold: 0.3 }); // Lower threshold for better reliability
+
+    observer.observe(document.querySelector(".animated-graph"));
+
+    // Expose replay functionality globally
+    window.replayLineAnimation = function () {
+      resetAnimation();
+      setTimeout(triggerAnimation, 100);
+    };
+  };
+
+  // Check if SVG is cached and already loaded
+  if (svgObject.contentDocument?.querySelector("path")) {
+    handleSVGLoad();
+  } else {
+    svgObject.addEventListener("load", handleSVGLoad);
+  }
+});
+
+let current = 0;
+    const images = document.querySelectorAll(".image-switcher img");
+    const caption = document.getElementById("image-caption");
+    const progress = document.getElementById("progress-bar");
+    const captions = [
+      "Bobbie's reflection in the mirror",
+      "Bobbie in her orange chair",
+      "A close up of Bobbie's left eye",
+      "Bobbie's hands",
+      "A few of Bobbie's wigs on their stands"
+    ];
+
+    function switchImage(direction) {
+      images[current].classList.remove("active");
+      current = (current + direction + images.length) % images.length;
+      images[current].classList.add("active");
+      caption.textContent = captions[current];
+      progress.style.width = ((current + 1) / images.length) * 100 + "%";
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      caption.textContent = captions[0];
+      progress.style.width = "25%";
+    });
+
+    function toggleSoundbite(button) {
+  const container = button.closest(".pudding-soundbite");
+  const audio = container.querySelector("audio");
+  const icon = button.querySelector("img");
+
+  // Pause main article audio
+  const mainAudio = document.getElementById("main-audio");
+  if (!mainAudio.paused) {
+    mainAudio.pause();
+    document.getElementById("main-play").querySelector("img").src = "public/illustrations/play.png";
+  }
+
+  // Pause all other soundbites
+  document.querySelectorAll(".pudding-soundbite audio").forEach(a => {
+    if (a !== audio) a.pause();
+  });
+
+  // Reset all play icons
+  document.querySelectorAll(".play-pause-icon").forEach(img => {
+    img.src = "public/illustrations/play.png";
+  });
+
+  if (audio.paused) {
+    audio.play();
+    icon.src = "public/illustrations/pause.png";
+  } else {
+    audio.pause();
+    icon.src = "public/illustrations/play.png";
+  }
+
+  audio.onended = () => {
+    icon.src = "public/illustrations/play.png";
+  };
+}
+
+  const poemVideo = document.getElementById("poem-video");
+
+  // Pause video when main audio or soundbites play
+  mainAudio.addEventListener("play", () => {
+    poemVideo.pause();
+  });
+  
+
+  document.querySelectorAll(".pudding-soundbite audio").forEach(audio => {
+    audio.addEventListener("play", () => {
+      poemVideo.pause();
+    });
+  });
+
+  // Pause all audio when the video plays
+  poemVideo.addEventListener("play", () => {
+    // Pause main article audio
+    if (!mainAudio.paused) {
+      mainAudio.pause();
+      document.getElementById("main-play").querySelector("img").src = "public/illustrations/play.png";
+    }
+
+    // Pause all soundbites
+    document.querySelectorAll(".pudding-soundbite audio").forEach(audio => audio.pause());
+
+    // Reset soundbite icons
+    document.querySelectorAll(".pudding-soundbite .play-pause-icon").forEach(img => {
+      img.src = "public/illustrations/play.png";
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("poem-video");
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sources = video.querySelectorAll("source");
+          sources.forEach(source => {
+            const src = source.getAttribute("src");
+            if (!source.src) source.src = src;
+          });
+          video.load();
+          obs.unobserve(video);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(video);
+  });
+
+if (window.innerWidth <= 768) {
+  // Disable scroll-based image swapping on mobile
+} else {
+  const observerOptions = {
+    root: document.querySelector('.case-study-scroll'),
+    rootMargin: '0px',
+    threshold: 0.5
+  };
+
+  const caseStudyImages = document.querySelectorAll('#case-image img');
+  const caseStudyParagraphs = document.querySelectorAll('.case-study-scroll p[data-image]');
+
+  // Ensure the first image is active on load
+  caseStudyImages[0].classList.add('active');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = entry.target.getAttribute('data-image');
+        if (index !== null && caseStudyImages[index]) {
+          caseStudyImages.forEach(img => img.classList.remove('active'));
+          caseStudyImages[index].classList.add('active');
+          document.querySelectorAll('#case-caption p').forEach(p => p.classList.remove('active'));
+          const caption = document.querySelector(`#case-caption p:nth-child(${parseInt(index) + 1})`);
+          if (caption) caption.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  caseStudyParagraphs.forEach(p => observer.observe(p));
+}
+
+const caseStudyImages = document.querySelectorAll('#case-image img');
+const caseStudyParagraphs = document.querySelectorAll('.case-study-scroll p[data-image]');
+
+// Ensure the first image is active on load
+caseStudyImages[0].classList.add('active');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = entry.target.getAttribute('data-image');
+      if (index !== null && caseStudyImages[index]) {
+        caseStudyImages.forEach(img => img.classList.remove('active'));
+        caseStudyImages[index].classList.add('active');
+        document.querySelectorAll('#case-caption p').forEach(p => p.classList.remove('active'));
+        const caption = document.querySelector(`#case-caption p:nth-child(${parseInt(index) + 1})`);
+        if (caption) caption.classList.add('active');
+      }
+    }
+  });
+}, {
+  root: document.querySelector('.case-study-scroll'),
+  threshold: 0.5
+});
+
+caseStudyParagraphs.forEach(p => observer.observe(p));
+
+let dotsSvg; 
+window.addEventListener("DOMContentLoaded", () => {
+  dotsSvg = document.querySelector(".dots-layer");
+
+const dotPositions = [
+  { x: 132, y: 95 },
+  { x: 158, y: 89 },
+  { x: 670, y: 134 },
+  { x: 330, y: 90 },
+  { x: 115, y: 120 },
+  { x: 145, y: 108 },
+  { x: 108, y: 110 },
+  { x: 122, y: 60 },
+  { x: 180, y: 140 },
+  { x: 128, y: 91 },
+  { x: 135, y: 69 },
+  { x: 530, y: 137 },
+  { x: 131, y: 101 },
+  { x: 220, y: 93 },
+  { x: 80, y: 100 },
+  { x: 125, y: 140 },
+  { x: 148, y: 85 },
+  { x: 370, y: 94 },
+  { x: 118, y: 146 },
+  { x: 205, y: 102 },
+  { x: 152, y: 94 },
+  { x: 390, y: 127 },
+  { x: 478, y: 78 },
+  { x: 120, y: 113 },
+  { x: 112, y: 84 },
+  { x: 145, y: 108 },
+  { x: 550, y: 102 },
+  { x: 105, y: 92 },
+  { x: 190, y: 90 },
+  { x: 142, y: 90 },
+  { x: 125, y: 140 },
+  { x: 162, y: 105 },
+  { x: 170, y: 87 },
+  { x: 310, y: 113 },
+  { x: 130, y: 150 },
+  { x: 655, y: 118 },
+  { x: 190, y: 90 },
+  { x: 145, y: 108 }
+];
+
+  function addDots() {
+    dotsSvg.innerHTML = "";
+
+    dotPositions.forEach((pos, i) => {
+      const dot = document.createElementNS("http://www.w3.org/2000/svg", "image");
+      dot.setAttributeNS(null, "href", "public/graphs/dot.svg");
+      dot.setAttribute("x", pos.x);
+      dot.setAttribute("y", pos.y);
+      dot.setAttribute("width", 20);
+      dot.setAttribute("height", 20);
+      dot.style.opacity = 0;
+      dot.style.transition = "opacity 0.5s ease";
+      dotsSvg.appendChild(dot);
+
+      setTimeout(() => {
+        dot.style.opacity = 1;
+
+        // After last dot, enable interactivity
+        if (i === dotPositions.length - 1) {
+          setTimeout(() => {
+            enableDotClick();
+            document.getElementById("dot-message").style.opacity = 1;
+          }, 500);
+        }
+      }, i * 200);
+    });
+  }
+
+  function resetDots() {
+    dotsSvg.innerHTML = "";
+  }
+
+  const dotGraphSection = document.querySelector(".dot-graph-wrapper");
+
+  let hasAnimated = false;
+
+  const dotObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !hasAnimated) {
+      addDots();
+      hasAnimated = true;
+    }
+  });
+}, { threshold: 0.5 });
+
+  dotObserver.observe(dotGraphSection);
+
+  window.replayDotAnimation = () => {
+    resetDots();
+    setTimeout(addDots, 100);
+  };
+});
+
+function enableDotClick() {
+  dotsSvg.style.pointerEvents = "auto";
+  dotsSvg.style.cursor = "pointer";
+
+  const handleClick = e => {
+    dotsSvg.removeEventListener("click", handleClick); // Prevent more dots
+
+    const svgRect = dotsSvg.getBoundingClientRect();
+    const x = e.clientX - svgRect.left;
+    const y = e.clientY - svgRect.top;
+
+    const svgPoint = dotsSvg.createSVGPoint();
+    svgPoint.x = x;
+    svgPoint.y = y;
+    const svgCoords = svgPoint.matrixTransform(dotsSvg.getScreenCTM().inverse());
+
+    const newDot = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    newDot.setAttributeNS(null, "href", "graphs/dot.svg");
+    newDot.setAttribute("x", svgCoords.x - 10);
+    newDot.setAttribute("y", svgCoords.y - 10);
+    newDot.setAttribute("width", 20);
+    newDot.setAttribute("height", 20);
+    newDot.style.opacity = 0;
+    newDot.style.transition = "opacity 0.5s ease";
+    dotsSvg.appendChild(newDot);
+
+    setTimeout(() => {
+      newDot.style.opacity = 1;
+    }, 100);
+  };
+
+  dotsSvg.addEventListener("click", event => {
+    const pt = dotsSvg.createSVGPoint();
+    pt.x = event.clientX;
+    pt.y = event.clientY;
+
+    const svgCoords = pt.matrixTransform(dotsSvg.getScreenCTM().inverse());
+
+    const newDot = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    newDot.setAttributeNS(null, "href", "public/graphs/dot-new.svg");
+    newDot.setAttribute("x", svgCoords.x - 10); // center it
+    newDot.setAttribute("y", svgCoords.y - 10);
+    newDot.setAttribute("width", 20);
+    newDot.setAttribute("height", 20);
+    newDot.style.opacity = 0;
+    newDot.style.transition = "opacity 0.5s ease";
+    dotsSvg.appendChild(newDot);
+
+    setTimeout(() => {
+      newDot.style.opacity = 1;
+    }, 100);
+
+    // disable further clicks
+    dotsSvg.style.pointerEvents = "none";
+  });
+}
+
+  const textarea = document.querySelector(".balloon-note-container textarea");
+  const saved = localStorage.getItem("balloonMessage");
+
+  if (saved) {
+    textarea.value = saved;
+  }
+
+  textarea.addEventListener("input", () => {
+    localStorage.setItem("balloonMessage", textarea.value);
+  });
+
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.12/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.12/dist/js/uikit-icons.min.js"></script>
+  
+</body>
+</html>

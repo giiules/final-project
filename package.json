@@ -1,0 +1,17 @@
+{
+  "name": "erased",
+  "version": "1.0.0",
+  "description": "Multimedia feature for Giulia Serrelli’s major practical project on loneliness and design",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
