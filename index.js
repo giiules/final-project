@@ -43,7 +43,7 @@ app.post('/api/submit', (req, res) => {
   const sql = "INSERT INTO connections (x, y, message, ggid) VALUES (?, ?, ?, ?)";
   pool.query(sql, [x, y, message, ggid], (err, result) => {
     if (err) {
-      console.error("❌ Insert failed:", err);
+      console.error("❌ Insert failed:", err.sqlMessage || err.message || err);
       return res.status(500).json({ error: "Failed to save submission" });
     }
     res.json({ success: true, id: result.insertId });
