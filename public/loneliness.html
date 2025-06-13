@@ -727,7 +727,7 @@
     </div>       
     <div class="hero-image">
       <figure style="margin: 0;">
-        <img src="public/illustrations/redrawn-square.png" alt="Illustration of a person suspended in free fall, symbolising their erasure and how they are being redrawn"/>
+        <img src="illustrations/redrawn-square.png" alt="Illustration of a person suspended in free fall, symbolising their erasure and how they are being redrawn"/>
         <!-- <figcaption style="font-size: 0.9rem; color: #aaa; font-style: italic; margin-top: 0.5rem; padding-left: 1rem; padding-right: 1rem;">
           Redrawing the outlines of connection, design by Giulia Serrelli
         </figcaption> -->
@@ -744,20 +744,20 @@
           </div>
           <div style="display: flex; align-items: center; gap: 1rem;">
             <button class="play-button" id="main-play" role="button" aria-label="Play or pause audio" aria-pressed="false">
-              <img src="public/illustrations/play.png" alt="Play icon" class="play-pause-icon"/>
+              <img src="illustrations/play.png" alt="Play icon" class="play-pause-icon"/>
             </button>
             <div style="flex: 1; height: 4px; background: #333; position: relative; cursor: pointer;" aria-label="Audio progress" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
               <div id="main-progress" style="width: 0%; height: 100%; background: #fff;"></div>
             </div>
             <span id="main-duration" style="font-size: 0.75rem;" aria-live="polite">00:00</span>
            <label for="main-volume" style="display: flex; align-items: center; gap: 0.4rem;">
-            <img src="public/illustrations/speaker.png" alt="Volume icon" style="width: 16px; height: auto;" />
+            <img src="illustrations/speaker.png" alt="Volume icon" style="width: 16px; height: auto;" />
             <input type="range" id="main-volume" min="0" max="1" step="0.01" value="1"
               aria-label="Volume control"
               style="width: 100px; height: 3px; background: transparent; accent-color: #F7D149; outline: none; border-radius: 2px;">
           </label>
             <audio id="main-audio">
-              <source src="public/audio/listen-erased.mp3" type="audio/mp3"/>
+              <source src="audio/listen-erased.mp3" type="audio/mp3"/>
             </audio>
           </div>
         </div>
@@ -794,11 +794,11 @@
     <div class="image-switcher">
       <button class="prev" onclick="switchImage(-1)" aria-label="Previous photo">‹</button>
       <button class="next" onclick="switchImage(1)" aria-label="Next photo of Bobbie">›</button>
-      <img src="public/photos/Bobbie5.png" class="active" alt="Bobbie’s reflection in a mirror, evoking a fading sense of self"/>
-      <img src="public/photos/Bobbie1.png" alt="Bobbie sitting in the orange chair"/>
-      <img src="public/photos/Bobbie2.png" alt="A close up of Bobbie's eye"/>
-      <img src="public/photos/Bobbie3.png" alt="A close up of Bobbie's aged hands"/>
-      <img src="public/photos/Bobbie4.png" alt="A selection of Bobbies wigs"/>
+      <img src="photos/Bobbie5.png" class="active" alt="Bobbie’s reflection in a mirror, evoking a fading sense of self"/>
+      <img src="photos/Bobbie1.png" alt="Bobbie sitting in the orange chair"/>
+      <img src="photos/Bobbie2.png" alt="A close up of Bobbie's eye"/>
+      <img src="photos/Bobbie3.png" alt="A close up of Bobbie's aged hands"/>
+      <img src="photos/Bobbie4.png" alt="A selection of Bobbies wigs"/>
     </div>
 
     <div class="caption" id="image-caption" aria-live="polite" aria-atomic="true">Captions of the photos</div>
@@ -822,7 +822,7 @@
 
     <!-- bus illustration -->
     <div class="full-width-image">
-      <img src="public/graphs/bus.png" alt="Illustration showing a long line of double-decker buses representing the estimated 46 million people who have felt lonely in England">
+      <img src="graphs/bus.png" alt="Illustration showing a long line of double-decker buses representing the estimated 46 million people who have felt lonely in England">
     </div>  
 
     <p>What the survey results also highlight is that loneliness is not uniformly affecting people across the country.</p>
@@ -830,9 +830,9 @@
     <!-- infographics with click and text block-->
     <div class="image-text-block uk-margin-large-top">
       <div class="image-text-image">
-        <img src="public/graphs/overall.png" alt="Infographic: One in 14 people in England feel lonely often or always"/>
+        <img src="graphs/overall.png" alt="Infographic: One in 14 people in England feel lonely often or always"/>
         <div style="text-align: center; margin-top: 1rem;">
-          <a href="public/graphs/overall.png" target="_blank" class="infographic-button">
+          <a href="graphs/overall.png" target="_blank" class="infographic-button">
             View the infographic
           </a>
         </div>
@@ -848,9 +848,9 @@
 
     <!-- animated line graph -->
     <div class="animated-graph">
-      <img src="public/graphs/growth-background.png" alt="Loneliness graph" class="graph-bg" />
+      <img src="graphs/growth-background.png" alt="Loneliness graph" class="graph-bg" />
       <div class="graph-line-wrapper">
-        <object type="image/svg+xml" data="public/graphs/growth-line.svg" class="graph-line" aria-label="Line graph showing the increase of loneliness rates across years"></object>
+        <object type="image/svg+xml" data="graphs/growth-line.svg" class="graph-line" aria-label="Line graph showing the increase of loneliness rates across years"></object>
       </div>
     </div>
 
@@ -871,15 +871,15 @@
   <!-- sticky Gabi -->
   <div class="soundbite-right" style="position: sticky; top: 100px; height: 0;">
     <div class="pudding-soundbite">
-      <img src="public/illustrations/gabi.png" alt="An abstract, anonymous, illustration of Gabi" class="pudding-head"/>
+      <img src="illustrations/gabi.png" alt="An abstract, anonymous, illustration of Gabi" class="pudding-head"/>
       <div class="pudding-name">
         Listen to Gabi
       </div>
       <button class="play-button" onclick="toggleSoundbite(this)" aria-label="Play or pause soundbite from Gabi">
-        <img src="public/illustrations/play.png" alt="Play" class="play-pause-icon"/>
+        <img src="illustrations/play.png" alt="Play" class="play-pause-icon"/>
       </button>
       <audio>
-        <source src="public/audio/gabi.mp3" type="audio/mp3"/>
+        <source src="audio/gabi.mp3" type="audio/mp3"/>
       </audio>
 
     <!-- transcript for Gabi -->
@@ -940,12 +940,12 @@
         width="100%"
         preload="none"
         aria-label="Watch video poem Always a Stranger by Talkin’ Tables member John"
-        poster="public/photos/always-a-stranger-thumbnail.png"
+        poster="photos/always-a-stranger-thumbnail.png"
         style="max-width: 700px; display: block; margin-left: 0;"
         aria-label="Watch video poem Always a Stranger by Talkin’ Tables member John">
         
-        <source src="public/video/always-a-stranger-transcoded.webm" type="video/webm" />
-        <source src="public/video/always-a-stranger-transcoded.mp4" type="video/mp4" />
+        <source src="video/always-a-stranger-transcoded.webm" type="video/webm" />
+        <source src="video/always-a-stranger-transcoded.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -970,15 +970,15 @@
   <!-- sticky Josh -->
   <div class="soundbite-left" style="position: sticky; top: 100px; height: 0;">
     <div class="pudding-soundbite">
-      <img src="public/illustrations/josh.png" alt="An abstract, anonymous, illustration of Josh" class="pudding-head"/>
+      <img src="illustrations/josh.png" alt="An abstract, anonymous, illustration of Josh" class="pudding-head"/>
       <div class="pudding-name">
        Listen to Josh
       </div>
       <button class="play-button" onclick="toggleSoundbite(this)" aria-label="Play or pause soundbite from Josh">
-        <img src="public/illustrations/play.png" alt="Play" class="play-pause-icon"/>
+        <img src="illustrations/play.png" alt="Play" class="play-pause-icon"/>
       </button>
       <audio>
-        <source src="public/audio/josh.mp3" type="audio/mp3" />
+        <source src="audio/josh.mp3" type="audio/mp3" />
       </audio>
 
     <!-- transcript for Josh -->
@@ -1033,9 +1033,9 @@
           </div>
         </div>
         <div class="case-study-image" id="case-image">
-          <img src="public/photos/make.png" alt="Directional sign pointing to Make @ Story Garden, a creative social space in London" class="active"/>
-          <img src="public/photos/learning.png" alt="A pot inscribed with words about the value of learning and growing together"/>
-          <img src="public/photos/simeon.png" alt="Portrait of Simeon Featherstone, Technical Officer at Make @ Story Garden"/>
+          <img src="photos/make.png" alt="Directional sign pointing to Make @ Story Garden, a creative social space in London" class="active"/>
+          <img src="photos/learning.png" alt="A pot inscribed with words about the value of learning and growing together"/>
+          <img src="photos/simeon.png" alt="Portrait of Simeon Featherstone, Technical Officer at Make @ Story Garden"/>
           <div class="case-study-caption" id="case-caption">
             <p class="active">Pointing the way</p>
             <p>A creative journey</p>
@@ -1043,7 +1043,7 @@
           </div>
         </div>
         <div class="mobile-single-image">
-        <img src="public/photos/simeon.png" alt="Portrait of Simeon Featherstone, Technical Officer at Make @ Story Garden"/>
+        <img src="photos/simeon.png" alt="Portrait of Simeon Featherstone, Technical Officer at Make @ Story Garden"/>
         <p>Simeon Featherstone</p>
       </div>
       </div>
@@ -1060,7 +1060,7 @@
     <p>Not wanting to make any assumptions, Bryan explains how the first thing the team did was put up a very basic, handwritten graph with a line and colourful dots that asked the residents how connected they felt: “There were just two extremes on the scale: ‘I feel connected’ or ‘I don’t feel connected’,” Bryans recalls, noting how the dots clustered heavily at the disconnected end.</p>
     
     <div class="dot-graph-wrapper">
-      <img src="public/graphs/line-background.png" alt="Line graph without dots" class="graph-bg" />
+      <img src="graphs/line-background.png" alt="Line graph without dots" class="graph-bg" />
       <svg class="dots-layer" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot graph showing residents’ self-reported sense of connection" tabindex="0"></svg>
     </div>
 
@@ -1080,7 +1080,7 @@
     <div class="image-text-block uk-margin-large-top">
       <div class="image-text-image">
         <div class="balloon-note-container">
-          <img src="public/illustrations/balloon-text.png" alt="Cluster of bright yellow balloons with handwritten tags, symbolising the start of connection"/>
+          <img src="illustrations/balloon-text.png" alt="Cluster of bright yellow balloons with handwritten tags, symbolising the start of connection"/>
           <textarea placeholder="Type your own message, max 140 characters..." maxlength="140" aria-label="Write your own message to be displayed on the balloon"></textarea>
         </div>
       </div>
@@ -1105,7 +1105,7 @@
     <!-- corridor and text block -->
     <div class="image-text-block uk-margin-large-top">
       <div class="image-text-image">
-        <img src="public/illustrations/corridor.png" alt="Illustration of an anonymous corridor symbolising bad design"/>
+        <img src="illustrations/corridor.png" alt="Illustration of an anonymous corridor symbolising bad design"/>
       </div>
       <div class="image-text-content">
       <p>Because connection is deeply personal and often invisible, policymakers and developers struggle to justify it. In a system driven by return on investment, anything that can't be counted is easily sidelined. “There’s no mandate to do better,” Matthews says. “If a design is more expensive but might make people feel better, the response is: where’s the evidence?”</p>
@@ -1121,15 +1121,15 @@
   <!-- sticky Inês -->
   <div class="soundbite-right" style="position: sticky; top: 100px; height: 0;">
     <div class="pudding-soundbite">
-      <img src="public/illustrations/ines.png" alt="An abstract, anonymous, illustration of Inês" class="pudding-head"/>
+      <img src="illustrations/ines.png" alt="An abstract, anonymous, illustration of Inês" class="pudding-head"/>
       <div class="pudding-name">
         Listen to Inês
       </div>
       <button class="play-button" onclick="toggleSoundbite(this)" aria-label="Play or pause soundbite from Gabi">
-        <img src="public/illustrations/play.png" alt="Play icon" class="play-pause-icon"/>
+        <img src="illustrations/play.png" alt="Play icon" class="play-pause-icon"/>
       </button>
       <audio>
-        <source src="public/audio/ines.mp3" type="audio/mp3" />
+        <source src="audio/ines.mp3" type="audio/mp3" />
       </audio>
 
     <!-- transcript for Inês -->
@@ -1171,7 +1171,7 @@
   <hr style="margin: 4rem auto; border: none; border-top: 1px solid #444; max-width: 700px;" />
 
   <div style="display: flex; align-items: center; gap: 1.5rem; max-width: 700px; margin: 2rem auto; padding: 1rem;">
-    <img src="public/photos/giiules.png" alt="Illustration of Giulia Serrelli" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" />
+    <img src="photos/giiules.png" alt="Illustration of Giulia Serrelli" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" />
     <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; margin: 0;">
       Giulia Serrelli is a Master's student at Goldsmiths, University of London in Digital Journalism. This feature is part of her final project where she blends data with the art of storytelling and design. Other projects include <a href="https://tarot-app-production.up.railway.app/ " target="_blank" style="color: #ffffff; text-decoration: underline;">Mystic Tarots</a>.
     </p> 
@@ -1183,7 +1183,7 @@
       *Name is an alias | Photos, illustrations and video have been created by Giulia | 
       <a href="https://www.linkedin.com/in/giulia-serrelli/" target="_blank" style="color: #aaa; text-decoration: underline;">
         Connect with Giulia on LinkedIn
-        <img src="public/illustrations/linkedin.png" alt="LinkedIn icon" style="height: 16px; width: auto; margin-left: 4px;"/>
+        <img src="illustrations/linkedin.png" alt="LinkedIn icon" style="height: 16px; width: auto; margin-left: 4px;"/>
       </a>
     </p>
   </footer>
@@ -1200,15 +1200,15 @@ const mainAudio = document.getElementById("main-audio");
     // Pause all other soundbites
     document.querySelectorAll(".pudding-soundbite audio").forEach(a => a.pause());
     document.querySelectorAll(".pudding-soundbite .play-pause-icon").forEach(img => {
-      img.src = "public/illustrations/play.png";
+      img.src = "illustrations/play.png";
     });
 
     if (mainAudio.paused) {
       mainAudio.play();
-      mainIcon.src = "public/illustrations/pause.png";
+      mainIcon.src = "illustrations/pause.png";
     } else {
       mainAudio.pause();
-      mainIcon.src = "public/illustrations/play.png";
+      mainIcon.src = "illustrations/play.png";
     }
   });
 
@@ -1221,7 +1221,7 @@ const mainAudio = document.getElementById("main-audio");
   });
 
   mainAudio.addEventListener("ended", () => {
-    mainIcon.src = "public/illustrations/play.png";
+    mainIcon.src = "illustrations/play.png";
   });
 
     document.getElementById("main-volume").addEventListener("input", function () {
@@ -1330,7 +1330,7 @@ let current = 0;
   const mainAudio = document.getElementById("main-audio");
   if (!mainAudio.paused) {
     mainAudio.pause();
-    document.getElementById("main-play").querySelector("img").src = "public/illustrations/play.png";
+    document.getElementById("main-play").querySelector("img").src = "illustrations/play.png";
   }
 
   // Pause all other soundbites
@@ -1340,19 +1340,19 @@ let current = 0;
 
   // Reset all play icons
   document.querySelectorAll(".play-pause-icon").forEach(img => {
-    img.src = "public/illustrations/play.png";
+    img.src = "illustrations/play.png";
   });
 
   if (audio.paused) {
     audio.play();
-    icon.src = "public/illustrations/pause.png";
+    icon.src = "illustrations/pause.png";
   } else {
     audio.pause();
-    icon.src = "public/illustrations/play.png";
+    icon.src = "illustrations/play.png";
   }
 
   audio.onended = () => {
-    icon.src = "public/illustrations/play.png";
+    icon.src = "illustrations/play.png";
   };
 }
 
@@ -1375,7 +1375,7 @@ let current = 0;
     // Pause main article audio
     if (!mainAudio.paused) {
       mainAudio.pause();
-      document.getElementById("main-play").querySelector("img").src = "public/illustrations/play.png";
+      document.getElementById("main-play").querySelector("img").src = "illustrations/play.png";
     }
 
     // Pause all soundbites
@@ -1383,7 +1383,7 @@ let current = 0;
 
     // Reset soundbite icons
     document.querySelectorAll(".pudding-soundbite .play-pause-icon").forEach(img => {
-      img.src = "public/illustrations/play.png";
+      img.src = "illustrations/play.png";
     });
   });
 
@@ -1516,7 +1516,7 @@ const dotPositions = [
 
     dotPositions.forEach((pos, i) => {
       const dot = document.createElementNS("http://www.w3.org/2000/svg", "image");
-      dot.setAttributeNS(null, "href", "public/graphs/dot.svg");
+      dot.setAttributeNS(null, "href", "graphs/dot.svg");
       dot.setAttribute("x", pos.x);
       dot.setAttribute("y", pos.y);
       dot.setAttribute("width", 20);
@@ -1603,7 +1603,7 @@ function enableDotClick() {
     const svgCoords = pt.matrixTransform(dotsSvg.getScreenCTM().inverse());
 
     const newDot = document.createElementNS("http://www.w3.org/2000/svg", "image");
-    newDot.setAttributeNS(null, "href", "public/graphs/dot-new.svg");
+    newDot.setAttributeNS(null, "href", "graphs/dot-new.svg");
     newDot.setAttribute("x", svgCoords.x - 10); // center it
     newDot.setAttribute("y", svgCoords.y - 10);
     newDot.setAttribute("width", 20);
