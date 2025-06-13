@@ -1616,8 +1616,34 @@ function enableDotClick() {
       newDot.style.opacity = 1;
     }, 100);
 
-    // disable further clicks
+    // Disable further clicks
     dotsSvg.style.pointerEvents = "none";
+
+    // 1. Get coordinates
+    const userX = svgCoords.x;
+    const userY = svgCoords.y;
+
+    // 2. Get message
+    const message = document.querySelector(".balloon-note-container textarea").value;
+
+    // 3. Create random GGID
+    const ggid = 'ggid-' + Math.random().toString(36).substring(2, 10);
+
+    // 4. Send to backend
+    fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ x: userX, y: userY, message, ggid })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        console.log("✅ Submission stored with ID:", data.id);
+      } else {
+        console.error("❌ Submission failed:", data);
+      }
+    })
+    .catch(err => console.error("❌ Network error:", err));
   });
 }
 
