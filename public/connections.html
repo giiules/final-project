@@ -160,7 +160,11 @@
           dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
           dot.setAttribute("width", 20);
           dot.setAttribute("height", 20);
-          dot.setAttribute("x", (item.x / imgWidth) * 700 - 10);
+          const viewBoxWidth = 800;
+          const viewBoxHeight = 200;
+          const svgWidth = 700; // your fixed image size
+          dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
+          dot.setAttribute("y", (item.y / viewBoxHeight) * svgWidth * (viewBoxHeight / viewBoxWidth) - 10);
           dot.setAttribute("y", (item.y / imgHeight) * 400 - 10);
           overlay.appendChild(dot);
         }
