@@ -120,7 +120,7 @@
   <div class="graph-container">
     <div class="graph-img">
       <img src="graphs/line-background.png" alt="Line graph of connection" />
-      <svg id="dotOverlay" width="700" height="400" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
+      <svg id="dotOverlay" width="700" height="200" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
     </div>
     <div style="text-align: center;">
       <p>This is the same dot graph featured in the story, now populated with live responses. Each dot was placed by a reader, mapping where they feel they stand on the connection spectrum.</p>
@@ -161,7 +161,7 @@
         dot.setAttribute("width", 20);
         dot.setAttribute("height", 20);
         dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
-        dot.setAttribute("y", (item.y / viewBoxHeight) * 200 - 10);
+        dot.setAttribute("y", (item.y / 200) * 200 - 10);
         overlay.appendChild(dot);
       }
 
