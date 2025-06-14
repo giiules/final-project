@@ -15,16 +15,51 @@
     }
 
     h1 {
-      font-size: 3rem;
-      font-family: 'Libre Baskerville', serif;
+      font-size: 9rem;
       margin-bottom: 1rem;
+      margin-top: 0rem;
       text-align: center;
+    }
+
+    .mental-health-popup {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: #111;
+      color: #fff;
+      padding: 1rem 1.25rem;
+      max-width: 320px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: 'Open Sans', sans-serif;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+
+    .popup-text {
+      line-height: 1.5;
+    }
+
+    .popup-text a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .popup-close {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      font-size: 1.2rem;
+      cursor: pointer;
+      position: absolute;
+      top: 0.4rem;
+      right: 0.6rem;
     }
 
     .intro {
       max-width: 700px;
       margin: 0 auto 2rem;
-      text-align: center;
+      text-align: left;
     }
 
     .graph-container {
@@ -42,19 +77,7 @@
     .graph-img img {
       width: 700px;
       height: auto;
-      border: 1px solid #444;
       display: block;
-    }
-
-    .refresh-btn {
-      background: transparent;
-      color: #fff;
-      border: 1px solid #fff;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: all 0.2s ease-in-out;
     }
 
     .refresh-btn:hover {
@@ -67,11 +90,11 @@
       max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
+      max-width: 700px;
     }
 
     .balloon-section h2 {
-      font-family: 'Libre Baskerville', serif;
-      text-align: center;
+      text-align: left;
       margin-bottom: 1rem;
     }
 
@@ -112,28 +135,59 @@
   </style>
 </head>
 <body>
-  <h1>Connections</h1>
+  <h1>CONNECTED</h1>
   <div class="intro">
-    <p>These are the shared contributions by readers of <strong>Erased</strong>. Each dot reflects how connected they feel. The messages below come from the yellow balloon notes. Thank you for sharing your stories.</p>
+    <p>This page collates  the contributions by readers of <a href="https://final-project-production-d2a3.up.railway.app/" style="color: #fff; text-decoration: underline;"><strong>Erased</strong></a>. Thank you for sharing your stories.</p>
   </div>
 
+    <div class="mental-health-popup" id="mentalHealthPopup" aria-label="Mental health support popup">
+      <div class="popup-text">
+        If you're feeling lonely, support is available.
+        <br/>You can contact <strong>Samaritans</strong> on <strong>116 123</strong> or <br/>visit
+        <a href="https://www.samaritans.org" target="_blank">www.samaritans.org</a> for help and advice.
+      </div>
+      <button class="popup-close" onclick="document.getElementById('mentalHealthPopup').style.display='none'" aria-label="Close mental health popup">×</button>
+    </div>
+
   <div class="graph-container">
+    <h2>The line graph</h2>
+    <div style="text-align: left;">
+      <p>This is the same dot graph featured in the story, here, it is now populated with live responses placed by readers, mapping where they feel they stand on the connection spectrum.</p>
+    </div>
     <div class="graph-img">
       <img src="graphs/line-background.png" alt="Line graph of connection" />
       <svg id="dotOverlay" width="700" height="200" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
     </div>
-    <div style="text-align: center;">
-      <p>This is the same dot graph featured in the story, now populated with live responses. Each dot was placed by a reader, mapping where they feel they stand on the connection spectrum.</p>
-      <button class="refresh-btn" onclick="loadMessages()">Refresh</button>
-    </div>
   </div>
 
   <div class="balloon-section">
-    <h2>Balloon Messages</h2>
+    <h2>The balloon messages</h2>
     <div class="balloon-scroll" id="messages">
       <div class="balloon">Loading messages...</div>
     </div>
   </div>
+
+  <!-- my bio -->
+  <hr style="margin: 4rem auto; border: none; border-top: 1px solid #444; max-width: 700px;" />
+
+  <div style="display: flex; align-items: center; gap: 1.5rem; max-width: 700px; margin: 2rem auto; padding: 1rem;">
+    <img src="photos/giiules.png" alt="Illustration of Giulia Serrelli" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" />
+    <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+      Giulia Serrelli is a Master's student at Goldsmiths, University of London in Digital Journalism. This feature is part of her final project where she blends data with the art of storytelling and design. Other projects include <a href="https://tarot-app-production.up.railway.app/ " target="_blank" style="color: #ffffff; text-decoration: underline;">Mystic Tarots</a>.
+    </p> 
+  </div>
+
+    <!-- le footer -->
+    <footer style="padding: 1rem 4rem; background-color: #000; color: #aaa; font-size: 0.85rem; border-top: 1px solid #333; text-align: center;">
+        <p style="margin: 0; display: inline-block;">
+        *Name is an alias | Photos, illustrations and video have been created by Giulia | 
+        <a href="https://www.linkedin.com/in/giulia-serrelli/" target="_blank" style="color: #aaa; text-decoration: underline;">
+            Connect with Giulia on LinkedIn
+            <img src="illustrations/linkedin.png" alt="LinkedIn icon" style="height: 16px; width: auto; margin-left: 4px;"/>
+        </a>
+        </p>
+    </footer>
+
 
 <script>
   async function loadMessages() {
