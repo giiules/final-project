@@ -135,7 +135,7 @@
     </div>
   </div>
 
-  <script>
+<script>
   async function loadMessages() {
     const res = await fetch('/api/submissions');
     const data = await res.json();
@@ -148,6 +148,7 @@
     const viewBoxWidth = 800;
     const viewBoxHeight = 200;
     const svgWidth = 700;
+    const visualYOffset = 28; // Adjust this number if needed
 
     if (!data.length) {
       container.innerHTML = '<div class="balloon">No messages yet</div>';
@@ -161,7 +162,7 @@
         dot.setAttribute("width", 20);
         dot.setAttribute("height", 20);
         dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
-        dot.setAttribute("y", (item.y / 200) * 200 - 10);
+        dot.setAttribute("y", (item.y / viewBoxHeight) * 200 - 10 + visualYOffset);
         overlay.appendChild(dot);
       }
 
@@ -177,5 +178,6 @@
 
   window.addEventListener('DOMContentLoaded', loadMessages);
 </script>
+
 </body>
 </html>
