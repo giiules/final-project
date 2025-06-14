@@ -546,19 +546,19 @@
 
     .balloon-note-container textarea {
       position: absolute;
-      top: 69%;
+      top: 61%;
       left: 15%;
       width: 60%;
       height: 24%;
       background: transparent;
       border: none;
       color: white;
-      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-size: clamp(1.2rem, 1.3vw, 1.2rem);
       font-family: 'Shadows Into Light', cursive;
       resize: none;
       outline: none;
       text-align: left;
-      line-height: 1.3;
+      line-height: 1.2;
       overflow-y: auto;
       scrollbar-width: thin;
     }
@@ -1064,14 +1064,9 @@
       <svg class="dots-layer" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot graph showing residents’ self-reported sense of connection" tabindex="0"></svg>
     </div>
 
-      <p id="dot-message" style="text-align: center; color: #ccc; margin-top: 1rem; font-style: italic;">
-      Click on the line to add your own dot once the animation ends.
-      </p>
-
     <div class="replay-container">
-      <button onclick="replayDotAnimation()" class="replay-button">
-        Replay the animation and clear your dot
-      </button>
+      <button id="toggle-dot-btn" class="replay-button">Add Your Dot</button>
+      <button onclick="replayDotAnimation()" class="replay-button">Replay the animation</button>
     </div>
 
     <p>And so, the team set up a temporary installation using bright yellow balloons – deliberately vivid against the grey concrete – each tied with a luggage tag inviting residents to write something about their memories, hopes, or feelings about the place. “It was nothing fancy,” Bryans says. “Just a string, a pen, and a question.”</p>
@@ -1082,13 +1077,17 @@
         <div class="balloon-note-container">
           <img src="illustrations/balloon-text.png" alt="Cluster of bright yellow balloons with handwritten tags, symbolising the start of connection"/>
           <textarea placeholder="Type your own message, max 140 characters..." maxlength="140" aria-label="Write your own message to be displayed on the balloon"></textarea>
+          <div style="text-align: center; margin-top: 1rem;">
+          <button id="submit-message-btn" class="replay-button">Send your message</button>
+          </div>
         </div>
       </div>
       <div class="image-text-content">
         <p>Yet, it stirred something.</p>
         <p>One tag read: ‘I’m Somali and I’m new here.’ Another: ‘I remember watching this estate being built.’</p>
         <p>Two lives, two generations, two vastly different experiences suddenly visible to each other.</p>
-        <p>And critically, it all happened just outside residents’ front doors. “That threshold is important,” Bryans explains. “We’re often passive consumers of space. This kind of design invites people to be active participants. It says: you belong here, you can be part of this.”</p>
+        <p>And critically, it all happened just outside residents’ front doors.</p>
+        <p>“That threshold is important,” Bryans explains. “We’re often passive consumers of space. This kind of design invites people to be active participants. It says: you belong here, you can be part of this.”</p>
       </div>
     </div>
 
@@ -1190,6 +1189,9 @@
 
 <!-- JavaScript -->
 <script>
+let userGGID = localStorage.getItem("ggid") || `ggid-${Math.random().toString(36).substring(2, 10)}`;
+localStorage.setItem("ggid", userGGID);
+
 const mainAudio = document.getElementById("main-audio");
   const mainPlayButton = document.getElementById("main-play");
   const mainIcon = mainPlayButton.querySelector("img");
@@ -1564,88 +1566,83 @@ const dotPositions = [
   };
 });
 
+let dotPlaced = false;
+let userDotElement = null;
+
 function enableDotClick() {
-  dotsSvg.style.pointerEvents = "auto";
-  dotsSvg.style.cursor = "pointer";
+  const btn = document.getElementById("toggle-dot-btn");
+  btn.disabled = false;
 
-  const handleClick = e => {
-    dotsSvg.removeEventListener("click", handleClick); // Prevent more dots
+  btn.addEventListener("click", () => {
+    if (!dotPlaced) {
+      // Enable dot placement
+      dotsSvg.style.pointerEvents = "auto";
+      dotsSvg.style.cursor = "pointer";
+      btn.textContent = "Clear Your Dot";
 
-    const svgRect = dotsSvg.getBoundingClientRect();
-    const x = e.clientX - svgRect.left;
-    const y = e.clientY - svgRect.top;
+      const handleClick = (event) => {
+        const pt = dotsSvg.createSVGPoint();
+        pt.x = event.clientX;
+        pt.y = event.clientY;
+        const svgCoords = pt.matrixTransform(dotsSvg.getScreenCTM().inverse());
 
-    const svgPoint = dotsSvg.createSVGPoint();
-    svgPoint.x = x;
-    svgPoint.y = y;
-    const svgCoords = svgPoint.matrixTransform(dotsSvg.getScreenCTM().inverse());
+        userDotElement = document.createElementNS("http://www.w3.org/2000/svg", "image");
+        userDotElement.setAttributeNS(null, "href", "graphs/dot-new.svg");
+        userDotElement.setAttribute("x", svgCoords.x - 10);
+        userDotElement.setAttribute("y", svgCoords.y - 10);
+        userDotElement.setAttribute("width", 20);
+        userDotElement.setAttribute("height", 20);
+        userDotElement.style.opacity = 0;
+        userDotElement.style.transition = "opacity 0.5s ease";
+        dotsSvg.appendChild(userDotElement);
 
-    const newDot = document.createElementNS("http://www.w3.org/2000/svg", "image");
-    newDot.setAttributeNS(null, "href", "graphs/dot.svg");
-    newDot.setAttribute("x", svgCoords.x - 10);
-    newDot.setAttribute("y", svgCoords.y - 10);
-    newDot.setAttribute("width", 20);
-    newDot.setAttribute("height", 20);
-    newDot.style.opacity = 0;
-    newDot.style.transition = "opacity 0.5s ease";
-    dotsSvg.appendChild(newDot);
+        setTimeout(() => {
+          userDotElement.style.opacity = 1;
+        }, 100);
 
-    setTimeout(() => {
-      newDot.style.opacity = 1;
-    }, 100);
-  };
+        fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ x: svgCoords.x, y: svgCoords.y, message: "", ggid: userGGID })
+        });
 
-  dotsSvg.addEventListener("click", event => {
-    const pt = dotsSvg.createSVGPoint();
-    pt.x = event.clientX;
-    pt.y = event.clientY;
+        dotPlaced = true;
+        dotsSvg.style.pointerEvents = "none";
+        dotsSvg.removeEventListener("click", handleClick);
+      };
 
-    const svgCoords = pt.matrixTransform(dotsSvg.getScreenCTM().inverse());
-
-    const newDot = document.createElementNS("http://www.w3.org/2000/svg", "image");
-    newDot.setAttributeNS(null, "href", "graphs/dot-new.svg");
-    newDot.setAttribute("x", svgCoords.x - 10); // center it
-    newDot.setAttribute("y", svgCoords.y - 10);
-    newDot.setAttribute("width", 20);
-    newDot.setAttribute("height", 20);
-    newDot.style.opacity = 0;
-    newDot.style.transition = "opacity 0.5s ease";
-    dotsSvg.appendChild(newDot);
-
-    setTimeout(() => {
-      newDot.style.opacity = 1;
-    }, 100);
-
-    // Disable further clicks
-    dotsSvg.style.pointerEvents = "none";
-
-    // 1. Get coordinates
-    const userX = svgCoords.x;
-    const userY = svgCoords.y;
-
-    // 2. Get message
-    const message = document.querySelector(".balloon-note-container textarea").value;
-
-    // 3. Create random GGID
-    const ggid = 'ggid-' + Math.random().toString(36).substring(2, 10);
-
-    // 4. Send to backend
-    fetch('/api/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ x: userX, y: userY, message, ggid })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        console.log("✅ Submission stored with ID:", data.id);
-      } else {
-        console.error("❌ Submission failed:", data);
+      dotsSvg.addEventListener("click", handleClick);
+    } else {
+      // Clear the dot and reset state
+      if (userDotElement) {
+        userDotElement.remove();
+        userDotElement = null;
       }
-    })
-    .catch(err => console.error("❌ Network error:", err));
+
+      fetch('/api/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ggid: userGGID })
+      });
+
+      btn.textContent = "Add Your Dot";
+      dotPlaced = false;
+    }
   });
 }
+
+document.getElementById("submit-message-btn").addEventListener("click", () => {
+  const message = document.querySelector(".balloon-note-container textarea").value;
+  if (!message.trim()) return;
+
+  fetch('/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ x: null, y: null, message, ggid: userGGID })
+  }).then(() => {
+    console.log("✅ Message sent.");
+  });
+});
 
   const textarea = document.querySelector(".balloon-note-container textarea");
   const saved = localStorage.getItem("balloonMessage");

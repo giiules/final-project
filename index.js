@@ -40,13 +40,32 @@ app.get('/', (req, res) => {
 // Receive user dot + message
 app.post('/api/submit', (req, res) => {
   const { x, y, message, ggid } = req.body;
-  const sql = "INSERT INTO submissions(x, y, message, ggid) VALUES (?, ?, ?, ?)";
+  const sql = `
+  INSERT INTO submissions (x, y, message, ggid)
+  VALUES (?, ?, ?, ?)
+  ON DUPLICATE KEY UPDATE
+    x = IFNULL(VALUES(x), x),
+    y = IFNULL(VALUES(y), y),
+    message = IF(VALUES(message) != '', VALUES(message), message)
+`;
   pool.query(sql, [x, y, message, ggid], (err, result) => {
     if (err) {
       console.error("❌ Insert failed:", err.sqlMessage || err.message || err);
       return res.status(500).json({ error: "Failed to save submission" });
     }
     res.json({ success: true, id: result.insertId });
+  });
+});
+
+app.post('/api/delete', (req, res) => {
+  const { ggid } = req.body;
+  const sql = "UPDATE submissions SET x = NULL, y = NULL WHERE ggid = ?";
+  pool.query(sql, [ggid], (err) => {
+    if (err) {
+      console.error("❌ Dot delete failed:", err);
+      return res.status(500).json({ error: "Failed to delete dot" });
+    }
+    res.json({ success: true });
   });
 });
 
