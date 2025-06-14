@@ -1065,7 +1065,7 @@
     </div>
 
     <div class="replay-container">
-      <button id="toggle-dot-btn" class="replay-button">Add Your Dot</button>
+      <button id="toggle-dot-btn" class="replay-button">Add your dot</button>
       <button onclick="replayDotAnimation()" class="replay-button">Replay the animation</button>
     </div>
 
@@ -1578,7 +1578,7 @@ function enableDotClick() {
       // Enable dot placement
       dotsSvg.style.pointerEvents = "auto";
       dotsSvg.style.cursor = "pointer";
-      btn.textContent = "Clear Your Dot";
+      btn.textContent = "Clear your dot";
 
       const handleClick = (event) => {
         const pt = dotsSvg.createSVGPoint();
@@ -1625,7 +1625,7 @@ function enableDotClick() {
         body: JSON.stringify({ ggid: userGGID })
       });
 
-      btn.textContent = "Add Your Dot";
+      btn.textContent = "Add your dot";
       dotPlaced = false;
     }
   });
