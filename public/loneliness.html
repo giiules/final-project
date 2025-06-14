@@ -1541,11 +1541,11 @@ const dotPositions = [
     });
   }
 
-  function resetDots() {
-    const allDots = dotsSvg.querySelectorAll("image:not(.user-dot)");
-    allDots.forEach(dot => dot.remove());
-  }
-  
+    function resetDots() {
+      const allDots = dotsSvg.querySelectorAll("image:not(.user-dot)");
+      allDots.forEach(dot => dot.remove());
+    }
+
   const dotGraphSection = document.querySelector(".dot-graph-wrapper");
 
   let hasAnimated = false;
