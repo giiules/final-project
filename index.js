@@ -1,5 +1,5 @@
 const express = require('express');
-const config = require('./config'); // Same structure as your existing config.js
+const config = require('./config');
 const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
@@ -40,14 +40,7 @@ app.get('/', (req, res) => {
 // Receive user dot + message
 app.post('/api/submit', (req, res) => {
   const { x, y, message, ggid } = req.body;
-  const sql = `
-  INSERT INTO submissions (x, y, message, ggid)
-  VALUES (?, ?, ?, ?)
-  ON DUPLICATE KEY UPDATE
-    x = IFNULL(VALUES(x), x),
-    y = IFNULL(VALUES(y), y),
-    message = IF(VALUES(message) != '', VALUES(message), message)
-`;
+  const sql = "INSERT INTO submissions (x, y, message, ggid) VALUES (?, ?, ?, ?)";
   pool.query(sql, [x, y, message, ggid], (err, result) => {
     if (err) {
       console.error("❌ Insert failed:", err.sqlMessage || err.message || err);
