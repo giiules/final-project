@@ -1631,18 +1631,21 @@ function enableDotClick() {
   });
 }
 
-document.getElementById("submit-message-btn").addEventListener("click", () => {
-  const message = document.querySelector(".balloon-note-container textarea").value;
-  if (!message.trim()) return;
+  document.getElementById("submit-message-btn").addEventListener("click", () => {
+    const textarea = document.querySelector(".balloon-note-container textarea");
+    const message = textarea.value;
+    if (!message.trim()) return;
 
-  fetch('/api/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ x: null, y: null, message, ggid: userGGID })
-  }).then(() => {
-    console.log("✅ Message sent.");
+    fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ x: null, y: null, message, ggid: userGGID })
+    }).then(() => {
+      console.log("✅ Message sent.");
+      textarea.value = "";
+      localStorage.removeItem("balloonMessage");
+    });
   });
-});
 
   const textarea = document.querySelector(".balloon-note-container textarea");
   const saved = localStorage.getItem("balloonMessage");
@@ -1654,6 +1657,7 @@ document.getElementById("submit-message-btn").addEventListener("click", () => {
   textarea.addEventListener("input", () => {
     localStorage.setItem("balloonMessage", textarea.value);
   });
+
 
 </script>
 
