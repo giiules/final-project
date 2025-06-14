@@ -1542,9 +1542,10 @@ const dotPositions = [
   }
 
   function resetDots() {
-    dotsSvg.innerHTML = "";
+    const allDots = dotsSvg.querySelectorAll("image:not(.user-dot)");
+    allDots.forEach(dot => dot.remove());
   }
-
+  
   const dotGraphSection = document.querySelector(".dot-graph-wrapper");
 
   let hasAnimated = false;
@@ -1587,6 +1588,7 @@ function enableDotClick() {
         const svgCoords = pt.matrixTransform(dotsSvg.getScreenCTM().inverse());
 
         userDotElement = document.createElementNS("http://www.w3.org/2000/svg", "image");
+        userDotElement.classList.add("user-dot");
         userDotElement.setAttributeNS(null, "href", "graphs/dot-new.svg");
         userDotElement.setAttribute("x", svgCoords.x - 10);
         userDotElement.setAttribute("y", svgCoords.y - 10);
