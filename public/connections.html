@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connections: What You Shared</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-family: 'Libre Baskerville', serif;
+      margin-bottom: 1rem;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .graph-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .graph-img {
+      flex: 1;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .graph-img img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #444;
+    }
+
+    .graph-text {
+      flex: 1;
+      max-width: 400px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .refresh-btn {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .refresh-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .balloon-section {
+      margin-top: 3rem;
+    }
+
+    .balloon-scroll {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      padding-top: 1rem;
+    }
+
+    .balloon {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      background: #111;
+      border: 1px solid #444;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 1.2rem;
+      min-width: 200px;
+      max-width: 300px;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .graph-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Connections</h1>
+  <div class="intro">
+    <p>These are the shared contributions by readers of <strong>Erased</strong>. Each dot reflects how connected they feel. The messages below come from the yellow balloon notes. Thank you for sharing your stories.</p>
+  </div>
+
+  <div class="graph-container">
+    <div class="graph-img">
+      <img src="graphs/line-background.png" alt="Line graph of connection" />
+      <svg id="dotOverlay" width="100%" height="100%" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
+    </div>
+    <div class="graph-text">
+      <p>This is the same dot graph featured in the story, now populated with live responses. Each dot was placed by a reader, mapping where they feel they stand on the connection spectrum.</p>
+      <button class="refresh-btn" onclick="loadMessages()">Refresh</button>
+    </div>
+  </div>
+
+  <div class="balloon-section">
+    <h2 style="font-family: 'Libre Baskerville', serif;">Balloon Messages</h2>
+    <div class="balloon-scroll" id="messages">
+      <div class="balloon">Loading messages...</div>
+    </div>
+  </div>
+
+  <script>
+    async function loadMessages() {
+      const res = await fetch('/api/submissions');
+      const data = await res.json();
+
+      const container = document.getElementById('messages');
+      const overlay = document.getElementById('dotOverlay');
+      container.innerHTML = '';
+      overlay.innerHTML = '';
+
+      const imgWidth = 800;
+      const imgHeight = 400;
+      const overlayW = 800;
+      const overlayH = 400;
+
+      if (!data.length) {
+        container.innerHTML = '<div class="balloon">No messages yet</div>';
+        return;
+      }
+
+      data.slice().reverse().forEach(item => {
+        // Add dot as image
+        if (item.x !== null && item.y !== null) {
+          const dot = document.createElementNS("http://www.w3.org/2000/svg", "image");
+          dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
+          dot.setAttribute("width", 20);
+          dot.setAttribute("height", 20);
+          dot.setAttribute("x", (item.x / imgWidth) * overlayW - 10);
+          dot.setAttribute("y", (item.y / imgHeight) * overlayH - 10);
+          overlay.appendChild(dot);
+        }
+
+        // Add message
+        if (item.message?.trim()) {
+          const el = document.createElement('div');
+          el.className = 'balloon';
+          el.textContent = item.message;
+          container.appendChild(el);
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', loadMessages);
+  </script>
+</body>
+</html>
