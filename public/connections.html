@@ -153,7 +153,7 @@
     </div>
     <div class="graph-img">
       <img src="graphs/line-background.png" alt="Line graph of connection" />
-      <svg id="dotOverlay" width="700" height="200" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
+      <svg id="dotOverlay" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" style="position:absolute; top:0; left:0; width:100%; height:auto; pointer-events:none; z-index:10;"></svg>
     </div>
   </div>
 
@@ -202,7 +202,7 @@
 
     const viewBoxWidth = 800;
     const viewBoxHeight = 200;
-    const svgWidth = 700;
+    const svgWidth = 800;
     const visualYOffset = 22;
 
     if (!data.length) {
@@ -216,8 +216,8 @@
         dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
         dot.setAttribute("width", 20);
         dot.setAttribute("height", 20);
-        dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
-        dot.setAttribute("y", (item.y / viewBoxHeight) * 200 - 10 + visualYOffset);
+        dot.setAttribute("x", item.x - 10);
+        dot.setAttribute("y", item.y - 10 + visualYOffset);
         overlay.appendChild(dot);
       }
 
