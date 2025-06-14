@@ -1061,7 +1061,11 @@
     
     <div class="dot-graph-wrapper">
       <img src="graphs/line-background.png" alt="Line graph without dots" class="graph-bg" />
-      <svg class="dots-layer" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot graph showing residents’ self-reported sense of connection" tabindex="0"></svg>
+      <svg class="dots-layer" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot graph representing residents’ self-reported sense of connection" tabindex="0">
+      <g id="background-dots"></g>
+      <g id="user-dot-layer"></g>
+</svg>
+
     </div>
 
     <div class="replay-container">
@@ -1514,7 +1518,7 @@ const dotPositions = [
 ];
 
   function addDots() {
-    dotsSvg.innerHTML = "";
+    dotsSvg.querySelector("#background-dots").innerHTML = "";
 
     dotPositions.forEach((pos, i) => {
       const dot = document.createElementNS("http://www.w3.org/2000/svg", "image");
@@ -1525,7 +1529,7 @@ const dotPositions = [
       dot.setAttribute("height", 20);
       dot.style.opacity = 0;
       dot.style.transition = "opacity 0.5s ease";
-      dotsSvg.appendChild(dot);
+      dotsSvg.querySelector("#background-dots").appendChild(dot);
 
       setTimeout(() => {
         dot.style.opacity = 1;
@@ -1596,7 +1600,7 @@ function enableDotClick() {
         userDotElement.setAttribute("height", 20);
         userDotElement.style.opacity = 0;
         userDotElement.style.transition = "opacity 0.5s ease";
-        dotsSvg.appendChild(userDotElement);
+        dotsSvg.querySelector("#user-dot-layer").appendChild(userDotElement);
 
         setTimeout(() => {
           userDotElement.style.opacity = 1;
