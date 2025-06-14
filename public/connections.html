@@ -136,50 +136,46 @@
   </div>
 
   <script>
-    async function loadMessages() {
-      const res = await fetch('/api/submissions');
-      const data = await res.json();
+  async function loadMessages() {
+    const res = await fetch('/api/submissions');
+    const data = await res.json();
 
-      const container = document.getElementById('messages');
-      const overlay = document.getElementById('dotOverlay');
-      container.innerHTML = '';
-      overlay.innerHTML = '';
+    const container = document.getElementById('messages');
+    const overlay = document.getElementById('dotOverlay');
+    container.innerHTML = '';
+    overlay.innerHTML = '';
 
-      const imgWidth = 700;
-      const imgHeight = 400;
+    const viewBoxWidth = 800;
+    const viewBoxHeight = 200;
+    const svgWidth = 700;
 
-      if (!data.length) {
-        container.innerHTML = '<div class="balloon">No messages yet</div>';
-        return;
-      }
-
-      data.slice().reverse().forEach(item => {
-        // Add dot as image
-        if (item.x !== null && item.y !== null) {
-          const dot = document.createElementNS("http://www.w3.org/2000/svg", "image");
-          dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
-          dot.setAttribute("width", 20);
-          dot.setAttribute("height", 20);
-          const viewBoxWidth = 800;
-          const viewBoxHeight = 200;
-          const svgWidth = 700; // your fixed image size
-          dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
-          dot.setAttribute("y", (item.y / viewBoxHeight) * svgWidth * (viewBoxHeight / viewBoxWidth) - 5);
-          dot.setAttribute("y", (item.y / imgHeight) * 400 - 10);
-          overlay.appendChild(dot);
-        }
-
-        // Add message
-        if (item.message?.trim()) {
-          const el = document.createElement('div');
-          el.className = 'balloon';
-          el.textContent = item.message;
-          container.appendChild(el);
-        }
-      });
+    if (!data.length) {
+      container.innerHTML = '<div class="balloon">No messages yet</div>';
+      return;
     }
 
-    window.addEventListener('DOMContentLoaded', loadMessages);
-  </script>
+    data.slice().reverse().forEach(item => {
+      if (item.x !== null && item.y !== null) {
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "image");
+        dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
+        dot.setAttribute("width", 20);
+        dot.setAttribute("height", 20);
+        dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
+        dot.setAttribute("y", (item.y / viewBoxHeight) * 200 - 10);
+        overlay.appendChild(dot);
+      }
+
+      // Add message
+      if (item.message?.trim()) {
+        const el = document.createElement('div');
+        el.className = 'balloon';
+        el.textContent = item.message;
+        container.appendChild(el);
+      }
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', loadMessages);
+</script>
 </body>
 </html>
