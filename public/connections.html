@@ -18,39 +18,32 @@
       font-size: 3rem;
       font-family: 'Libre Baskerville', serif;
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     .intro {
       max-width: 700px;
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem;
+      text-align: center;
     }
 
     .graph-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: flex-start;
-      justify-content: center;
-      margin-bottom: 3rem;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      position: relative;
     }
 
     .graph-img {
-      flex: 1;
-      max-width: 600px;
+      width: 700px;
+      margin: 0 auto;
       position: relative;
     }
 
     .graph-img img {
-      width: 100%;
+      width: 700px;
       height: auto;
       border: 1px solid #444;
-    }
-
-    .graph-text {
-      flex: 1;
-      max-width: 400px;
-      font-size: 1rem;
-      line-height: 1.6;
+      display: block;
     }
 
     .refresh-btn {
@@ -71,6 +64,15 @@
 
     .balloon-section {
       margin-top: 3rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .balloon-section h2 {
+      font-family: 'Libre Baskerville', serif;
+      text-align: center;
+      margin-bottom: 1rem;
     }
 
     .balloon-scroll {
@@ -102,10 +104,9 @@
       h1 {
         font-size: 2.2rem;
       }
-
-      .graph-container {
-        flex-direction: column;
-        align-items: center;
+      .graph-img, .graph-img img {
+        width: 100%;
+        max-width: 700px;
       }
     }
   </style>
@@ -119,16 +120,16 @@
   <div class="graph-container">
     <div class="graph-img">
       <img src="graphs/line-background.png" alt="Line graph of connection" />
-      <svg id="dotOverlay" width="100%" height="100%" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
+      <svg id="dotOverlay" width="700" height="400" style="position:absolute; top:0; left:0; pointer-events:none; z-index:10;"></svg>
     </div>
-    <div class="graph-text">
+    <div style="text-align: center;">
       <p>This is the same dot graph featured in the story, now populated with live responses. Each dot was placed by a reader, mapping where they feel they stand on the connection spectrum.</p>
       <button class="refresh-btn" onclick="loadMessages()">Refresh</button>
     </div>
   </div>
 
   <div class="balloon-section">
-    <h2 style="font-family: 'Libre Baskerville', serif;">Balloon Messages</h2>
+    <h2>Balloon Messages</h2>
     <div class="balloon-scroll" id="messages">
       <div class="balloon">Loading messages...</div>
     </div>
@@ -144,10 +145,8 @@
       container.innerHTML = '';
       overlay.innerHTML = '';
 
-      const imgWidth = 800;
+      const imgWidth = 700;
       const imgHeight = 400;
-      const overlayW = 800;
-      const overlayH = 400;
 
       if (!data.length) {
         container.innerHTML = '<div class="balloon">No messages yet</div>';
@@ -161,8 +160,8 @@
           dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
           dot.setAttribute("width", 20);
           dot.setAttribute("height", 20);
-          dot.setAttribute("x", (item.x / imgWidth) * overlayW - 10);
-          dot.setAttribute("y", (item.y / imgHeight) * overlayH - 10);
+          dot.setAttribute("x", (item.x / imgWidth) * 700 - 10);
+          dot.setAttribute("y", (item.y / imgHeight) * 400 - 10);
           overlay.appendChild(dot);
         }
 
