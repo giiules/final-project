@@ -216,8 +216,8 @@
         dot.setAttributeNS(null, "href", "graphs/dot-new.svg");
         dot.setAttribute("width", 20);
         dot.setAttribute("height", 20);
-        dot.setAttribute("x", item.x - 10);
-        dot.setAttribute("y", item.y - 10 + visualYOffset);
+        dot.setAttribute("x", (item.x / viewBoxWidth) * svgWidth - 10);
+        dot.setAttribute("y", (item.y / viewBoxHeight) * 200 - 10 + visualYOffset);
         overlay.appendChild(dot);
       }
 
