@@ -1535,16 +1535,21 @@ const dotPositions = [
       dot.style.transition = "opacity 0.5s ease";
       dotsSvg.querySelector("#background-dots").appendChild(dot);
 
-      setTimeout(() => {
+      setTimeout(() => {// Only trigger dot message fade-in after animation
+
+      if (i === dotPositions.length - 1) {
+        setTimeout(() => {
+          document.getElementById("dot-message").style.opacity = 1;
+        }, 500);
+      }
+
+      // Allow dot-adding early
+      if (i === 0) {
+        enableDotClick();
+      }
         dot.style.opacity = 1;
 
-        // After last dot, enable interactivity
-        if (i === dotPositions.length - 1) {
-          setTimeout(() => {
-            enableDotClick();
-            document.getElementById("dot-message").style.opacity = 1;
-          }, 500);
-        }
+
       }, i * 200);
     });
   }
@@ -1569,10 +1574,26 @@ const dotPositions = [
 
   dotObserver.observe(dotGraphSection);
 
-  window.replayDotAnimation = () => {
-    resetDots();
-    setTimeout(addDots, 100);
-  };
+window.replayDotAnimation = () => {
+  resetDots();
+
+  // Restore user dot status
+  userDotElement = dotsSvg.querySelector("#user-dot-layer .user-dot");
+
+  const btn = document.getElementById("toggle-dot-btn");
+  if (userDotElement) {
+    dotPlaced = true;
+    btn.textContent = "Clear your dot";
+  } else {
+    dotPlaced = false;
+    btn.textContent = "Add your dot";
+  }
+
+  setTimeout(() => {
+    addDots();
+    enableDotClick();  // <-- IMPORTANT
+  }, 100);
+};
 });
 
 let dotPlaced = false;
@@ -1580,14 +1601,18 @@ let userDotElement = null;
 
 function enableDotClick() {
   const btn = document.getElementById("toggle-dot-btn");
-  btn.disabled = false;
 
-  btn.addEventListener("click", () => {
+  // Remove any old listeners before adding a new one
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+
+  newBtn.disabled = false;
+
+  newBtn.addEventListener("click", () => {
     if (!dotPlaced) {
-      // Enable dot placement
       dotsSvg.style.pointerEvents = "auto";
       dotsSvg.style.cursor = "pointer";
-      btn.textContent = "Clear your dot";
+      newBtn.textContent = "Clear your dot";
 
       const handleClick = (event) => {
         const pt = dotsSvg.createSVGPoint();
@@ -1623,20 +1648,19 @@ function enableDotClick() {
 
       dotsSvg.addEventListener("click", handleClick);
     } else {
-      // Clear the dot and reset state
-      if (userDotElement) {
-        userDotElement.remove();
-        userDotElement = null;
-      }
+      // Clear dot
+      const currentUserDot = dotsSvg.querySelector("#user-dot-layer .user-dot");
+      if (currentUserDot) currentUserDot.remove();
+
+      userDotElement = null;
+      dotPlaced = false;
+      newBtn.textContent = "Add your dot";
 
       fetch('/api/delete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ggid: userGGID })
       });
-
-      btn.textContent = "Add your dot";
-      dotPlaced = false;
     }
   });
 }
