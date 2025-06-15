@@ -137,36 +137,14 @@
       display: block;
     }
 
-    .animated-graph {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 4rem auto;
-      margin-bottom: 1rem;
-    }
-
     .graph-bg {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    .graph-line-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .graph-line {
-      width: 100%;
-      height: 100%;
-    }
-
     .replay-container {
-      text-align: left;
+      text-align: center;
       margin-top: 0.2rem;
       margin-left: 0.25rem;
     }
@@ -711,6 +689,14 @@
     width: fit-content;
     margin: 0.5rem auto 0 auto;
   }
+
+  .replay-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
 }
     
   </style>
@@ -780,7 +766,7 @@
 
     <!-- main content -->
     <div class="main-content">
-    <p><b>One in 14 people in England now lives with chronic loneliness. Behind those numbers are people like Bobbie, whose sense of self is fading. As loneliness rises – and is recognised as a global public health priority – some are asking if connection can be designed.</b></p>
+    <p><b>One in 14 adults (aged 16+) in England lives with chronic loneliness. Behind those numbers are people like Bobbie, whose sense of self is fading. As loneliness rises – and is recognised as a global public health priority – some are asking if connection can be designed.</b></p>
     <hr style="margin: 1rem auto; border: none; border-top: 1px solid #444; max-width: 700px;"/>
     <p>It’s one of those invigorating sunny days in the capital city, the kind that draws people together, outside. But inside the flat at number 119, the sunrays more cautiously seep through the edges of a curtain and 62-year-old early retiree, Bobbie* sits just out of reach of them, her soft outline growing fainter with time.</p>
     <p>“I feel like my life is slowly being erased; I feel like I no longer recognise myself,” Bobbie shares from her single orange armchair in her living room.</p>
@@ -820,7 +806,7 @@
     <h2 class="subheading">A lot more people than we think have felt lonely</h2>
 
     <p>Bobbie and Josh are far from alone in experiencing chronic loneliness, that feeling of feeling lonely often or always.</p>
-    <p>The latest <a href="https://www.gov.uk/government/statistics/community-life-survey-202324-annual-publication/community-life-survey-202324-loneliness-and-support-networks--2" target="_blank" style="color: #ffffff; text-decoration: underline;">Community Life Survey</a> by the Department for Culture, Media & Sport estimate that around three million people in England live with chronic loneliness – roughly one in 14.</p>
+    <p>The latest <a href="https://www.gov.uk/government/statistics/community-life-survey-202324-annual-publication/community-life-survey-202324-loneliness-and-support-networks--2" target="_blank" style="color: #ffffff; text-decoration: underline;">Community Life Survey</a> by the Department for Culture, Media & Sport estimate that around three million adults (aged 16+) in England live with chronic loneliness – roughly one in 14.</p>
     <p>At his practice in Greens Norton, a village located in Northamptonshire, Hartley recounts seeing loneliness across a wide spectrum of patients, from a terminally ill man with no one to share his final weeks, to a young mother of three struggling with suicidal thoughts.</p>
     <p>Even more striking: only 20 per cent of respondents said they never felt lonely. That means 80 per cent have felt lonely at some point in their life. When used as a benchmark for the population of England, this estimate translates to approximately 46 million people: enough to fill 578,000 double-decker buses bumper-to-bumper, from London to Beijing and back.</p>
 
@@ -829,7 +815,7 @@
       <img src="graphs/bus.png" alt="Illustration showing a long line of double-decker buses representing the estimated 46 million people who have felt lonely in England">
     </div>  
 
-    <p>What the survey results also highlight is that loneliness is not uniformly affecting people across the country.</p>
+    <p>What the survey results also highlight is that loneliness is not uniformly affecting adulots across the country.</p>
 
     <!-- infographics with click and text block-->
     <div class="image-text-block uk-margin-large-top">
@@ -842,7 +828,7 @@
         </div>
       </div>
       <div class="image-text-content">
-        <p>Younger adults, aged 16-24 reported the highest levels of chronic loneliness at 10 per cent, followed closely by those aged 25-34 with nine per cent. People with disabilities were five times more likely to report feeling lonely ‘often or always’ compared to people without disabilities. Gender disparities were also evident with eight per cent of women experiencing chronic loneliness compared to six per cent of men; notably, adults whose gender identity differs from their sex registered at birth, reported the highest levels at 19 per cent.</p>
+        <p>Younger adults, aged 16-24 reported the highest levels of chronic loneliness at 10 per cent, followed closely by those aged 25-34 with nine per cent. Adults with disabilities were five times more likely to report feeling lonely ‘often or always’ compared to adults without disabilities. Gender disparities were also evident with eight per cent of women experiencing chronic loneliness compared to six per cent of men; notably, adults whose gender identity differs from their sex registered at birth, reported the highest levels at 19 per cent.</p>
       </div>
     </div>
 
@@ -850,19 +836,13 @@
     <p>Beyond its personal toll, loneliness also exerts pressure on the NHS. “We see patients more frequently simply because they are lonely,” Hartley says. “And the ones we don’t see – the ones who never come – they often end up in severe states of neglect.” Malnourishment, unmanaged conditions, and anxiety spiral silently until intervention is no longer optional – but urgent.</p>
     <p>Importantly, the results show that loneliness is on the rise.</p>
 
-    <!-- animated line graph -->
-    <div class="animated-graph">
-      <img src="graphs/growth-background.png" alt="Loneliness graph" class="graph-bg" />
-      <div class="graph-line-wrapper">
-        <object type="image/svg+xml" data="graphs/growth-line.svg" class="graph-line" aria-label="Line graph showing the increase of loneliness rates across years"></object>
-      </div>
+    <!-- line graph -->
+    <img src="graphs/growth-line.png" alt="Line graph showing the trends in the percentage of people feeling alone often or always in England from 2013-2024"/>
+        <div style="text-align: center; margin-top: 1rem;">
+          <a href="graphs/growth-line-big.png" target="_blank" class="infographic-button">
+            View the graph
+          </a>
     </div>
-
-    <div class="replay-container">
-      <button onclick="replayLineAnimation()" class="replay-button">
-        Replay the animation 
-      </button>
-    </div>  
 
     <p>Hartley notes that loneliness is still shrouded in stigma. “People will often come to me with symptoms that clearly stem from isolation, but they rarely say, ‘I’m lonely’,” he shares. “It’s only when asked directly that they sometimes recognise it.” That silence contributes to the invisibility of the issue – even as it grows.”</p>
     <p>So, how do we stop these figures from growing and erasing more people’s sense of self?</p>
@@ -1064,7 +1044,7 @@
     <p>Not wanting to make any assumptions, Bryan explains how the first thing the team did was put up a very basic, handwritten graph with a line and colourful dots that asked the residents how connected they felt: “There were just two extremes on the scale: ‘I feel connected’ or ‘I don’t feel connected’,” Bryans recalls, noting how the dots clustered heavily at the disconnected end.</p>
     
     <div class="dot-graph-wrapper">
-      <img src="graphs/line-background.png" alt="Line graph without dots" class="graph-bg" />
+      <img src="graphs/line-background.png" alt="Line graph without dots" class="graph-bg"/>
       <svg class="dots-layer" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot graph representing residents’ self-reported sense of connection" tabindex="0">
       <g id="background-dots"></g>
       <g id="user-dot-layer"></g>
@@ -1252,64 +1232,6 @@ const mainAudio = document.getElementById("main-audio");
     mainAudio.currentTime = newTime;
   });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const svgObject = document.querySelector(".graph-line");
-
-  const handleSVGLoad = () => {
-    const svgDoc = svgObject.contentDocument;
-    if (!svgDoc) return;
-
-    const path = svgDoc.querySelector("path");
-    if (!path) return;
-
-    const length = path.getTotalLength();
-
-    // Style setup
-    path.style.stroke = "#ffffff";
-    path.style.fill = "none";
-    path.style.strokeWidth = "2";
-    path.style.strokeDasharray = length;
-
-    // Animation control functions
-    const resetAnimation = () => {
-      path.style.transition = "none";
-      path.style.strokeDashoffset = length;
-      path.getBoundingClientRect(); // Force reflow
-    };
-
-    const triggerAnimation = () => {
-      path.style.transition = "stroke-dashoffset 3s ease-out 0.5s";
-      path.style.strokeDashoffset = "0";
-    };
-
-    // Set up animation reset initially
-    resetAnimation();
-
-    // Trigger animation on scroll into view
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          triggerAnimation();
-        }
-      });
-    }, { threshold: 0.3 }); // Lower threshold for better reliability
-
-    observer.observe(document.querySelector(".animated-graph"));
-
-    // Expose replay functionality globally
-    window.replayLineAnimation = function () {
-      resetAnimation();
-      setTimeout(triggerAnimation, 100);
-    };
-  };
-
-  // Check if SVG is cached and already loaded
-  if (svgObject.contentDocument?.querySelector("path")) {
-    handleSVGLoad();
-  } else {
-    svgObject.addEventListener("load", handleSVGLoad);
-  }
-});
 
 let current = 0;
     const images = document.querySelectorAll(".image-switcher img");
